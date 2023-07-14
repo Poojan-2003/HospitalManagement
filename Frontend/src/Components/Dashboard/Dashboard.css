@@ -1,0 +1,166 @@
+.fullpage{
+    position: relative;
+}
+.navbar{
+    width: 99vw;
+    position: absolute;
+    z-index: 15;
+    height: 64px;
+    background-color: #3366ff;
+    
+    box-shadow: 0px 3px 3px -2px rgba(17, 8, 8, 0.2),
+		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.body{
+    display: flex;
+    margin-left: -10px;
+    
+}
+.sidebar{
+    z-index: 10;
+    width: 280px;
+    /* min-height: 90vh; */
+    box-shadow: 5px 5px 5px rgb(68 68 68 / 0.6);
+    /* box-shadow:  1200px 0 0 5 rgba(17, 8, 8, 0.2); */
+    
+    
+    
+}
+.sidebardata{
+    margin-top: 150px;
+}
+
+/* .data{
+    margin-left: 10px;
+    background-color: #f0f2f8;
+    width: 85vw;
+    
+} */
+
+.SidebarList{
+    margin-top: 40%;
+}
+
+.homepage{
+    margin-left: 50px;
+    margin-top: 500px;
+}
+
+/* .MedicineAvailability{
+    margin-top: 500px;
+    width: 50px;
+    height: 50px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+} */
+
+.row{
+    margin-left: 10%;
+    display: flex;
+    top: 500px;
+    margin-top: 20px;
+    height: 40px;
+    width: 240px;
+    padding-top: 5%;
+    font-size: 0.875rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    line-height: 1.643em;
+
+}
+.row:hover{
+    background-color: #e3f2fd;
+    color: #386aff;
+    cursor: pointer;
+}
+
+.sidebardata  #active{
+    background-color: #e3f2fd;
+    color: #386aff;    
+}
+
+
+.data{
+    z-index: 5;
+    
+    width: 1260px;
+    /* width: 98vw; */
+    background-color: #f0f2f8;
+}
+#icon{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.navbarforpage{
+    display: flex;
+    margin-top: 5.2%;
+    width: 1258px;
+    height: 80px;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+}
+
+#navbaricon{
+    margin-top: 1.5%;
+    font-size: 40px;
+    margin-left: 4.5%;
+    color: #386aff;
+}
+
+.dash{
+    margin-top: .5%;
+    margin-left: 2%;
+    font-size: 30px;
+    color:#386aff;
+}
+.dashfeature{
+    margin-left: -11.5%;
+    margin-top: 3.5%;
+}
+.medicine{
+    width: fit-content;
+   font-size: 25px;
+   margin-top: 20px;
+}
+.medicineexpiry{
+    margin-top: 20px;
+    width: 300px;
+}
+.remain{
+    margin-top: 19px;
+   margin-left: 30px;
+    font-size: 80px;
+}
+.row1{
+    /* border-radius: 8%; */
+    padding-top: 10px;
+    padding-left: 20px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+  ;
+    background-color: #3366ff;
+    display: flex;
+    width: 400px;
+    height: 120px;
+    margin-left: 10px;
+    color: white;
+}
+.smallboxes{
+    display: flex;
+   
+    margin-left: 5%;
+    margin-top: 5%;
+}
+#bedsavai{
+    margin-left: 200px;
+}
+.row2{
+    display: flex;
+    margin-top: 5%;
+    margin-left: 5%;
+}

@@ -29,7 +29,7 @@ const Login = () => {
 
 		if(data.user){
 			alert('Login Successful')
-			//window.location.href = '/dashboard'
+			window.location.href = '/DoctorDashboard'
 		}else{
 			alert('Please check your username and password')
 		}

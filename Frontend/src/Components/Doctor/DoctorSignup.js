@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
 // import jwt from 'jasonwebtoken'
@@ -32,9 +31,12 @@ const DoctorSignup = () => {
 		}),
 	})
 	const data = await response.json()
-	// if(data.status === 'ok'){
-	// 	history.pushState('/DoctorLogin')
-	// }
+  if(data.error !== undefined)
+    alert(data.error)
+	if(data.status === 'ok'){
+    alert('SignUp Successfull')
+		window.location.href='/DoctorLogin'
+	}
   }
 
   return (

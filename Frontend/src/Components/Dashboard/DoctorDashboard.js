@@ -1,29 +1,32 @@
-import React, { useEffect } from 'react'
-// import jwt from 'jsonwebtoken'
+import React from 'react'
+import '../Dashboard/Dashboard.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { library } from '@fortawesome/fontawesome-svg-core'
+import { Dashboard } from './Dashboard'
+// library.add(fas)
 function DoctorDashboard() {
-    //const history = useHistory()
-    //  async function populateQuote(){
-    //     const data = await fetch('/api/quote',{
-    //         headers:{
-    //             'x-access-token':localStorage.getItem('token'),
-    //         },
-    //     })
-    // }
-    // useEffect(()=>{
-    // const token = localStorage.getItem('token')
-    // if(token){
-    //     const user = jwt.decode(token)
-    //     if(!user){
-    //         localStorage.removeItem('token')
-    //         //history.replace('/')
-    //     }else{
-    //         populateQuote()
-    //     }
-    // }        
-    // },[])
-  return (
-    <div>DoctorDashboard</div>
-  )
+  // return (
+  //   <div className='fullpage'>
+  //     <div className='navbar'></div>
+  //     <div className='body'>
+  //         <div className='sidebar'>
+  //           <div className='sidebardata'>
+  //           {Dashboard.map((val,key)=>{
+  //             return(
+  //               <div
+  //                 key={key}
+  //                 className='row'
+  //                 id={window.location.pathname === val.link ?   'active' : ""}
+  //                 onClick={()=>{window.location.pathname=val.link}}> {val.title}
+  //               </div>
+  //             );
+  //           })}
+  //           </div>
+  //         </div>
+          
+  //     </div>
+  //   </div>
+  // )
 }
 
 export default DoctorDashboard

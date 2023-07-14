@@ -1,28 +1,27 @@
 import React from "react";
-import DoctorDashboard from "./DoctorDashboard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Dashboard } from "./Dashboard";
-import "../Dashboard/Dashboard.css";
+import "../Dashboard/AdminDashboard.css";
+
 function AdminDashboard() {
   return (
     <div>
-      <div className="navbar"></div>
-      <div className="body">
-        <div className="sidebar">
-          <div className="sidebardata">
+      <div className="MainNavbar"></div>
+      <div className="MainBody">
+        <div className="MainSidebar">
+          <div className="SideBarData">
             {Dashboard.map((val, key) => {
               return (
                 <div
                   key={key}
-                  className="row"
+                  className="RowData"
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
                     window.location.pathname = val.link;
                   }}
                 >
                   <div>
-                    <i class={val.icon} id="icon"></i>
+                    <i class={val.icon} id="IconForSidebar"></i>
                   </div>{" "}
                   {val.title}
                 </div>
@@ -31,43 +30,43 @@ function AdminDashboard() {
           </div>
         </div>
 
-        <div className="data">
-          <div className="navbarforpage">
-            <i class="fa-sharp fa-solid fa-hospital" id="navbaricon"></i>
-            <div className="dash">Dashboard</div>
-            <div className="dashfeature">Dashboard Features</div>
+        <div className="MainData">
+          <div className="NavBarForMainData">
+            <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
+            <div className="NavDashboard">Dashboard</div>
+            <div className="NavDashfeature">Dashboard Features</div>
           </div>
-          <div className="smallboxes">
-            <div className="row1">
-              <div className="medicine">
+          <div className="MainBox">
+            <div className="SubBox">
+              <div className="LeftSubbox">
                 <i class="fa-sharp fa-solid fa-tablets"></i>
-                <div className="medicineexpiry">Medicine to be Expired</div>
+                <div className="TextInSubbox">Medicine to be Expired</div>
               </div>
-              <div className="remain">3</div>
+              <div className="NumberInSubbox">3</div>
             </div>
-            <div className="row1" id="bedsavai">
-              <div className="medicine">
+            <div className="SubBox" id="RightColumn">
+              <div className="LeftSubbox">
                 <i class="fa-solid fa-bed"></i>
-                <div className="medicineexpiry">Empty Beds</div>
+                <div className="TextInSubbox">Empty Beds</div>
               </div>
-              <div className="remain">3</div>
+              <div className="NumberInSubbox">3</div>
             </div>
           </div>
           <div className="row2">
-            <div className="row1">
-              <div className="medicine">
+            <div className="SubBox">
+              <div className="LeftSubbox">
                 <i class="fa-solid fa-user-doctor"></i>
-                <div className="medicineexpiry">Total Doctors</div>
+                <div className="TextInSubbox">Total Doctors</div>
               </div>
-              <div className="remain">3</div>
+              <div className="NumberInSubbox">3</div>
             </div>
 
-            <div className="row1" id="bedsavai">
-              <div className="medicine">
+            <div className="SubBox" id="RightColumn">
+              <div className="LeftSubbox">
                 <i class="fa-solid fa-users-medical"></i>
-                <div className="medicineexpiry">Total Patients</div>
+                <div className="TextInSubbox">Total Patients</div>
               </div>
-              <div className="remain">3</div>
+              <div className="NumberInSubbox">3</div>
             </div>
           </div>
         </div>

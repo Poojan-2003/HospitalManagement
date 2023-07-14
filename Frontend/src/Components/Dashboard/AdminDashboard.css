@@ -1,50 +1,38 @@
+*{
+    font-family: 'Josefin Sans', sans-serif;
+}
 .fullpage{
     position: relative;
 }
-.navbar{
-    width: 99vw;
+.MainNavbar{
+    width: 100vw;
     position: absolute;
     z-index: 15;
     height: 64px;
     background-color: #3366ff;
-    
     box-shadow: 0px 3px 3px -2px rgba(17, 8, 8, 0.2),
 		0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 }
 
-.body{
+.MainBody{
     display: flex;
     margin-left: -10px;
     
 }
-.sidebar{
+.MainSidebar{
     z-index: 10;
     width: 280px;
-    /* min-height: 90vh; */
+    min-height: 99vh;
     box-shadow: 5px 5px 5px rgb(68 68 68 / 0.6);
-    /* box-shadow:  1200px 0 0 5 rgba(17, 8, 8, 0.2); */
     
-    
-    
+    /* box-shadow:  1200px 0 0 5 rgba(17, 8, 8, 0.2); */    
 }
-.sidebardata{
-    margin-top: 150px;
+.SideBarData{
+    margin-top: 80px;
+    font-size: large;
 }
-
-/* .data{
-    margin-left: 10px;
-    background-color: #f0f2f8;
-    width: 85vw;
-    
-} */
-
 .SidebarList{
     margin-top: 40%;
-}
-
-.homepage{
-    margin-left: 50px;
-    margin-top: 500px;
 }
 
 /* .MedicineAvailability{
@@ -54,7 +42,7 @@
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 } */
 
-.row{
+.RowData{
     margin-left: 10%;
     display: flex;
     top: 500px;
@@ -63,35 +51,33 @@
     width: 240px;
     padding-top: 5%;
     font-size: 0.875rem;
-    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     line-height: 1.643em;
+    font-size: large;
 
 }
-.row:hover{
+.RowData:hover{
     background-color: #e3f2fd;
     color: #386aff;
     cursor: pointer;
 }
 
-.sidebardata  #active{
+.SideBarData  #active{
     background-color: #e3f2fd;
     color: #386aff;    
 }
 
 
-.data{
+.MainData{
     z-index: 5;
-    
-    width: 1260px;
-    /* width: 98vw; */
+     width: 1260px;
     background-color: #f0f2f8;
 }
-#icon{
+#IconForSidebar{
     margin-left: 20px;
     margin-right: 20px;
 }
-.navbarforpage{
+.NavBarForMainData{
     display: flex;
     margin-top: 5.2%;
     width: 1258px;
@@ -100,38 +86,30 @@
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
 }
 
-#navbaricon{
+#NavBarIcon{
     margin-top: 1.5%;
     font-size: 40px;
     margin-left: 4.5%;
     color: #386aff;
 }
 
-.dash{
+.NavDashboard{
     margin-top: .5%;
     margin-left: 2%;
     font-size: 30px;
     color:#386aff;
 }
-.dashfeature{
+.NavDashfeature{
     margin-left: -11.5%;
     margin-top: 3.5%;
 }
-.medicine{
-    width: fit-content;
-   font-size: 25px;
-   margin-top: 20px;
+
+.MainBox{
+    display: flex;
+    margin-left: 5%;
+    margin-top: 5%;
 }
-.medicineexpiry{
-    margin-top: 20px;
-    width: 300px;
-}
-.remain{
-    margin-top: 19px;
-   margin-left: 30px;
-    font-size: 80px;
-}
-.row1{
+.SubBox{
     /* border-radius: 8%; */
     padding-top: 10px;
     padding-left: 20px;
@@ -141,8 +119,7 @@
     0 12.5px 10px rgba(0, 0, 0, 0.06),
     0 22.3px 17.9px rgba(0, 0, 0, 0.072),
     0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12)
-  ;
+    0 100px 80px rgba(0, 0, 0, 0.12);
     background-color: #3366ff;
     display: flex;
     width: 400px;
@@ -150,13 +127,23 @@
     margin-left: 10px;
     color: white;
 }
-.smallboxes{
-    display: flex;
-   
-    margin-left: 5%;
-    margin-top: 5%;
+.LeftSubbox{
+    width: fit-content;
+   font-size: 25px;
+   margin-top: 20px;
 }
-#bedsavai{
+.TextInSubbox{
+    margin-top: 20px;
+    width: 300px;
+}
+.NumberInSubbox{
+    margin-top: 19px;
+   margin-left: 30px;
+    font-size: 80px;
+}
+
+
+#RightColumn{
     margin-left: 200px;
 }
 .row2{

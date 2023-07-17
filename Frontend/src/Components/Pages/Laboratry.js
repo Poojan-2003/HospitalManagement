@@ -1,6 +1,5 @@
 import React from 'react'
-import '../Pages/Dashboard.css'
-import { Dashboard } from '../Dashboard/Dashboard'
+import { Dashboard } from "../Dashboard/Dashboard";
 
 function Laboratry() {
   return (

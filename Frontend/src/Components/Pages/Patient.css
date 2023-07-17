@@ -1,38 +1,140 @@
+*{
+  font-family: 'Josefin Sans', sans-serif;
+}
+.PMainNavbar{
+  width: 100vw;
+  position: absolute;
+  z-index: 15;
+  height: 64px;
+  background-color: #3366ff;
+  box-shadow: 0px 3px 3px -2px rgba(17, 8, 8, 0.2),
+  0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
 
-.nav{
-    position: relative;
-    z-index: 200;
-    margin-top: 100px;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 500px;
-    width: 500px;
-    margin-left: 2%;
-    background-color: white;
-    box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12)
-  ;
+.PMainBody{
+  display: flex;
+  margin-left: -10px;
+  
 }
-#patientbig{
-  margin-top: 0.6%;
+.PMainSidebar{
+  z-index: 10;
+  width: 280px;
+  min-height: 99vh;
+  box-shadow: 5px 5px 5px rgb(68 68 68 / 0.6);
+  
+  /* box-shadow:  1200px 0 0 5 rgba(17, 8, 8, 0.2); */    
 }
-#patientsmall{
-  margin-top: 3.9%;
-  margin-left: -7.6%;
+.PSideBarData{
+  margin-top: 80px;
+  font-size: large;
 }
-.addpatient{
-  margin-top: 5%;
+.PSidebarList{
+  margin-top: 40%;
+}
+
+/* .MedicineAvailability{
+  margin-top: 500px;
+  width: 50px;
+  height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+} */
+
+.PRowData{
+  margin-left: 10%;
+  display: flex;
+  top: 500px;
+  margin-top: 20px;
+  height: 53px;
+  width: 240px;
+  padding-top: 5%;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.643em;
+  font-size: large;
+
+}
+.PRowData:hover{
+  background-color: #e3f2fd;
+  color: #386aff;
+  cursor: pointer;
+ 
+}
+
+.PSideBarData  #active{
+  background-color: #e3f2fd;
+  color: #386aff; 
+  /* padding-bottom: 20px;    */
+}
+
+
+.PMainData{
+  z-index: 5;
+  width: 1260px;
+  background-color: #f0f2f8;
+}
+#PIconForSidebar{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+
+
+.PNavBarForMainData{
+  display: flex;
+  margin-top: 5.2%;
+  width: 1258px;
+  height: 80px;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
+}
+
+#PNavBarIcon{
+  margin-top: 1.5%;
+  font-size: 40px;
+  margin-left: 4.5%;
+  color: #386aff;
+}
+
+.PNavDashboard{
+  margin-top: .5%;
+  margin-left: 2%;
+  font-size: 30px;
+  color:#386aff;
+}
+.PNavDashfeature{
+  margin-left: -11.5%;
+  margin-top: 3.5%;
+}
+
+.PMainBox{
+  display: flex;
   margin-left: 5%;
+  margin-top: 5%;
+  
 }
-.add{
-  width: 500px;
-  height: 500px;
-  top: 0;
+.Frow{
+  display: flex;
 }
+.Fname{
+   margin: 20px 20px 20px 20px;
+}
+.Srow{
+  display: flex;
+ }
+ .Email{
+  margin-top: 20px;
+  width: 485px;
+ }
+ .Trow{
+  display: flex;
+ }
+ .Frow{
+  display: flex;
+ }
+ .Firow{
+  display: flex;
+ }
+ .Mname{
+  margin-top: 22px;
+  margin-left: 100px;
+ }

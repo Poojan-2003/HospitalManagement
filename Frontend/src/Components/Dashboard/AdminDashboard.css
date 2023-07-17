@@ -1,9 +1,6 @@
 *{
     font-family: 'Josefin Sans', sans-serif;
 }
-.fullpage{
-    position: relative;
-}
 .MainNavbar{
     width: 100vw;
     position: absolute;
@@ -47,7 +44,7 @@
     display: flex;
     top: 500px;
     margin-top: 20px;
-    height: 40px;
+    height: 53px;
     width: 240px;
     padding-top: 5%;
     font-size: 0.875rem;
@@ -64,7 +61,8 @@
 
 .SideBarData  #active{
     background-color: #e3f2fd;
-    color: #386aff;    
+    color: #386aff; 
+    padding-bottom: 20px;   
 }
 
 

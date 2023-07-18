@@ -138,3 +138,20 @@
   margin-top: 22px;
   margin-left: 100px;
  }
+ .Sbtn{
+  width: 200px;
+  height: 50px;
+  border: none;
+  background-color: #3366ff;
+  color: white;
+
+ }
+ .Sbtn:hover{
+  cursor: pointer;
+  background-color: #90caf9;
+ }
+ .SubmitBtn{
+  margin-top: 20px;
+  margin-left: 35%;
+  margin-bottom: 30px;
+}

@@ -30,6 +30,7 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const DocLog = require('./Models/DoctorLoginSchema')
+const AddPatientLog = require('./Models/AddPatient')
 mongoose.connect('mongodb://localhost:27017/SGP')
 
 const jwt = require('jsonwebtoken')
@@ -74,6 +75,51 @@ app.post('/api/login' , async(req , res) => {
             return res.json({status:'error',user:false})
         }
         
+})
+
+// app.post('/api/AddPatient' , async(req , res) => {
+//     console.log(req.body)
+//     try{
+//         const user = await AddPatientLog.create({
+//             fname:req.body.name,
+//             mname:req.body.speciality,
+//             lname : req.body.contact,
+//             email:req.body.email,
+//             age:req.body.age, 
+//             bloodgroup:req.body.bloodgroup, 
+//             marriedstatuse:req.body.marriedstatus, 
+//             gender:req.body.gender,
+//             address:req.body.address, 
+//             height:req.body.height, 
+//             weight:req.body.weight, 
+//             mobile:req.body.mobile
+//         })
+//         res.json({status:'ok'})
+//     }catch(err){
+//         res.json({status:'error',error:'Error In Inserting data'})
+//     }
+    
+// })
+
+app.post('/api/AddPatient',(req,res)=>{
+    const {email} = req.body
+
+    AddPatientLog.findOne({email:email})
+    .then(user =>{
+        if(user){
+            res.json({status:'error',error:'Duplicate Email'})
+        }else{
+            AddPatientLog.create(req.body)
+            .then(AddPatient => res.json(AddPatient))
+            // .then(setModalOpen(!modalOpen))
+            // .then(alert("New Patient Added Successfully"))
+            .then(console.log("Added"))
+            // .then(window.location.href='/Patient')
+            .catch(err => res.json(err))
+            res.json({status:'ok'})
+        }
+    })
+    
 })
 
 app.listen(1337 , () => {

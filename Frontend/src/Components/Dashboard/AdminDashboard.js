@@ -2,6 +2,7 @@ import React from "react";
 
 import { Dashboard } from "./Dashboard";
 import "../Dashboard/AdminDashboard.css";
+import { Link } from "@mui/material";
 
 function AdminDashboard() {
   return (
@@ -17,7 +18,8 @@ function AdminDashboard() {
                   className="RowData"
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                    window.location.pathname = val.link;
+                     window.location.pathname = val.link;
+                    
                   }}
                 >
                   <div>

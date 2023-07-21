@@ -1,37 +1,11 @@
-// const express = require ('express')
-// const cors = require('cors')
-// const  mongoose  = require('mongoose')
-
-// const userRoutes = require('./Routes/user')
-
-// const app = express()
-// app.use(express.json())
-// app.use(cors)
-
-// app.use('/api/user',userRoutes)
-// app.get('/hello',(req,res)=>{
-//     res.send("Hello")
-// })
-//Connection To Database + Assigning Port forBackend
-// mongoose.connect("mongodb://localhost:27017/SGP",{
-//     useNewUrlParser:true,
-//     useUnifiedTopology:true
-// },(err)=>{
-//     if(err)console.log(err)
-//     else{
-//         console.log("Connected To Database")
-//     }
-// })
-// const port = process.env.PORT || 1337
-// app.listen(port,() => console.log(`Running  on ${port}`))
-
-
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const DocLog = require('./Models/DoctorLoginSchema')
-const AddPatientLog = require('./Models/AddPatient')
+// const AddPatientLog = require('./Models/AddPatient')
+const addPatientModel = require('./Models/AddPatient')
 mongoose.connect('mongodb://localhost:27017/SGP')
+.then(console.log("Connected to database"))
 
 const jwt = require('jsonwebtoken')
 const app = express()
@@ -92,7 +66,9 @@ app.post('/api/login' , async(req , res) => {
 //             address:req.body.address, 
 //             height:req.body.height, 
 //             weight:req.body.weight, 
-//             mobile:req.body.mobile
+//             mobile:req.body.mobile,
+//             date:req.body.birthdate,
+           
 //         })
 //         res.json({status:'ok'})
 //     }catch(err){
@@ -101,25 +77,79 @@ app.post('/api/login' , async(req , res) => {
     
 // })
 
-app.post('/api/AddPatient',(req,res)=>{
+// app.post('/api/AddPatient',(req,res)=>{
+//     // const {email} = req.body
+
+//     // AddPatientLog.findOne({email:email})
+//     // .then(user =>{
+//     //     if(user){
+//     //          return res.json({status:'error',error:'Duplicate Email'})
+//     //     }else{
+//     //         AddPatientLog.create(req.body)
+//     //         .then(AddPatient => res.json(AddPatient))
+//     //         // .then(setModalOpen(!modalOpen))
+//     //         // .then(alert("New Patient Added Successfully"))
+//     //         .then(console.log("Added"))
+//     //         // .then(window.location.href='/Patient')
+//     //         .catch(err => res.json(err))
+//     //          res.json({status:'ok'})
+//     //     }
+//     // })
+    
+// })
+
+app.get('/AllPatient', async (req,res) => {
+    try{
+        const AllPatient = await addPatientModel.find({status:{$eq:1}}).then(documents => {
+            if (documents.length > 0) {
+              return res.send(documents)
+            } else {
+              console.log('No documents found');
+            }    
+          })
+          .catch(error => {
+            console.error('Error finding documents:', error);
+            
+          });
+        // res.send({status:'ok',data:AllPatient}) 
+    }catch(err){
+        console.log(err)
+    }
+})
+
+
+app.delete('/DeletePatient/:id' , (res,req) => {
+    const id =req.params.id;
+    addPatientModel.findByIdAndDelete({_id:id})
+    .then( res =>{  res.json(res)})
+    
+})
+
+
+// app.post("/api/AddPatient" , (req,res) => {
+//     AddPatientLog.create(req.body)
+//     .then(Patients => res.json(Patients))
+//     .catch(err => res.json(err))
+// })
+
+app.post("/addPatient" , (req,res) => {
     const {email} = req.body
 
-    AddPatientLog.findOne({email:email})
-    .then(user =>{
+     addPatientModel.findOne({email:email})
+    .then(user=>{
         if(user){
-            res.json({status:'error',error:'Duplicate Email'})
+            return res.json({status:'error',error:'Duplicate Email'})
         }else{
-            AddPatientLog.create(req.body)
-            .then(AddPatient => res.json(AddPatient))
-            // .then(setModalOpen(!modalOpen))
-            // .then(alert("New Patient Added Successfully"))
-            .then(console.log("Added"))
-            // .then(window.location.href='/Patient')
-            .catch(err => res.json(err))
-            res.json({status:'ok'})
+            addPatientModel.create(req.body)
+            // .then(addpatient => res.json(addpatient))
+            .then(res.send({status:'ok'}))
+            // .catch(err => console.log(err))
+             .catch(res.send({status:'error',error:'Error In Inserting data'}))
         }
-    })
+      }
+    )
     
+   
 })
 
 app.listen(1337 , () => {

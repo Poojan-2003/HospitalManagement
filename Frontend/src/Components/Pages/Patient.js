@@ -9,79 +9,94 @@ import "../Pages/Patient.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function Patient() {
-  //Adding Patient's detail to mongodb 
-  async function AddPatient(event) {
-    event.preventDefault();
-    const response = await fetch("http://localhost:1337/api/AddPatient", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fname,
-        mname,
-        lname,
-        mobile,
-        email,
-        age,
-        gender,
-        bloodgroup,
-        marriedstatus,
-        address,
-        height,
-        weight,
-        birthdate
-      }),
-    });
-    const data = await response.json();
-    // if (data.error !== undefined) alert(data.error); setModalOpen(true);
-    if (data.error !== undefined) {
-      setModalOpen(true);
-      
-      toast.error('${data.error}', {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
 
-    if (data.status === "ok") {
-      toast.success("Patient Added successfully", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      alert("Patiend Added Successfully");
-      window.location.href = "/Patient";
+  const AddPatient = async(e) =>{
+    e.preventDefault();
+    await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
+    .then(result =>{  
+      if(result.data.status === 'error'){
+        setModalOpen(false)
+        const cerror = result.data.error
+                toast.error(cerror, {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }else if(result.data.status === 'ok'){
+              setModalOpen(false)
+              toast.success("Patient Added successfully", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            }
+          }
+       )
+    .catch(err => console.log(err))
+ 
     }
-  }
+  
 
   //Fetching Data
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:1337/AllPatient")
-  //     .then((res) => setAllPatient(res.data))
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:1337/AllPatient")
+      .then((res) => {
+        setAllPatient(res.data)
+      })
+      .catch((err) => {
+        toast.error(err, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      });
+  }, []);
 
 
  //Deleting Patient
   const deleteuser = async (id) => {
     axios.delete('http://localhost:1337/DeletePatient/'+id)
-    .then(res => {console.log(res)
-     window.location.reload()
+    .then(res => {
+      window.location.reload()
+      toast.success("Patient Deleted successfully", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
      })
-    .catch(err => console.log(err))
+    .catch(err =>{
+      toast.error(err, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    })
 
 }
   
@@ -408,7 +423,7 @@ function Patient() {
                       <td>{data.fname}</td>
                       <td>{data.age}</td>
                       <td>{data.mobile}</td>
-                      <td>Status</td>
+                      <td><div className="Active">Active</div></td>
                       <td className="Paction">
                         <div><NavLink to={`UpdatePatient/${data._id}`} ><i class="fa-solid fa-pen"></i></NavLink></div>
                         <div className="PDelete"><i class="fa-solid fa-trash" id="deleteicon" onClick={() => deleteuser(data._id)}></i></div>

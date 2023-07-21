@@ -2,7 +2,6 @@ import React from "react";
 
 import { Dashboard } from "./Dashboard";
 import "../Dashboard/AdminDashboard.css";
-import { Link } from "@mui/material";
 
 function AdminDashboard() {
   return (

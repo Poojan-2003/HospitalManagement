@@ -82,7 +82,7 @@
 .PNavBarForMainData{
   display: flex;
   margin-top: 5.2%;
-  width: 1258px;
+  width: 1265px;
   height: 80px;
   background-color: white;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
@@ -102,7 +102,7 @@
   color:#386aff;
 }
 .PNavDashfeature{
-  margin-left: -11.5%;
+  margin-left: -7.6%;
   margin-top: 3.5%;
 }
 
@@ -136,7 +136,7 @@
  }
  .Mname{
   margin-top: 22px;
-  margin-left: 100px;
+  margin-left: 140px;
  }
  .Sbtn{
   width: 200px;
@@ -148,10 +148,105 @@
  }
  .Sbtn:hover{
   cursor: pointer;
-  background-color: #90caf9;
+  transform: scale(0.9);
  }
  .SubmitBtn{
   margin-top: 20px;
   margin-left: 35%;
   margin-bottom: 30px;
+}
+.AddPBtn{
+  width: 150px;
+  height: 50px;
+  margin-top: 2%;
+  margin-left: 3%;
+  background-color: #3366ff;
+  border: 1px solid black;
+  color: white;
+  border: none;
+}
+.AddPBtn:hover{
+  cursor: pointer;
+  transform: scale(0.9);
+}
+.DisplayP{
+  margin-top: 3%;
+  height: 39vw;
+  margin-left: 40px;
+  background-color: white;
+}
+/* .Ptable{
+  border: 1px solid black;
+  margin-left: 4%;
+  margin-top: 4%;
+} */
+#Gender{
+  border: 1px solid green;
+}
+.Bdate{
+  border: 1px solid #c4c4c4;
+  width: 225px;
+  height: 56px;
+  margin-top: -10%;
+}
+.PBdate{
+  margin-top: -10px;
+}
+
+
+
+table {
+  /* margin: 5rem auto; */
+  margin-top: 4%;
+  margin-left: 3%;
+  /* border-radius: 2rem; */
+  /* border: 1rem hidden #443C68; */
+  /* border-collapse: collapse; */
+  /* box-shadow: 0 0 0 1px black; */
+  font-weight: normal;
+  overflow: hidden;
+  max-width: 80rem;
+}
+
+li, p, a, td{
+  font-weight: normal;
+
+  /* font-size: 1rem; */
+  /* line-height: 1.6; */
+}
+
+thead {
+  /* font-size: 1.1rem; */
+  font-weight: normal;
+
+  background-color: #3366ff;
+  color: #fff;
+}
+
+th,
+td {
+  /* border: 1px solid #443C68; */
+  min-width: 12rem;
+  padding: 1rem;
+  font-weight: normal;
+
+  /* line-height: 1.7; */
+}
+
+td {
+  /* font-size: 1.4rem; */
+  border: 1px solid black;
+  font-weight: normal;
+}
+.Paction{
+  display: flex;
+}
+.PDelete{
+  margin-left: 30%;
+}
+#deleteicon{
+  color: #3366ff;
+}
+#deleteicon:hover{
+  cursor: pointer;
 }

@@ -1,4 +1,5 @@
 import {BrowserRouter , Routes , Route} from "react-router-dom"
+
 import Home from './Components/Home/Home';
 import "./App.css"
 import PatientLogin from "./Components/Patient/PatientLogin";
@@ -12,6 +13,7 @@ import Laboratry from "./Components/Pages/Laboratry";
 import Doctor from "./Components/Pages/Doctor";
 import Inventory from "./Components/Pages/Inventory";
 import Employee from "./Components/Pages/Employee" ;
+import UpdatePatient from "./Components/Pages/UpdatePatient";
 function App() {
   // const user = localStorage.getItem("token");
   return (
@@ -29,6 +31,7 @@ function App() {
           <Route exact path = '/Inventory' element = {<Inventory />}></Route>
           <Route exact path = '/Laboratry' element = {<Laboratry />}></Route>
           <Route exact path = '/Patient' element = {<Patient />}></Route>
+          <Route exact path='/Patient/UpdatePatient/:id' element={<UpdatePatient />}></Route>
           <Route exact path='*' element = {<NoPage />}></Route> 
         </Routes>
       </BrowserRouter>

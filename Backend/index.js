@@ -126,13 +126,6 @@ app.post('/api/login' , async(req , res) => {
 // })
 
 
-
-// app.post("/api/AddPatient" , (req,res) => {
-//     AddPatientLog.create(req.body)
-//     .then(Patients => res.json(Patients))
-//     .catch(err => res.json(err))
-// })
-
 // app.post("/addPatient" , (req,res) => {
 //     const {email} = req.body
 
@@ -193,21 +186,41 @@ app.get('/AllPatient', async (req,res) => {
 
 
 app.post('/addPatient', async(req,res) => {
-    const patientdata = new addPatientModel(req.body)
-    try{
-        await patientdata.save()
-        res.status(201).json({
-            status: 'Success',
-            data : {
-                patientdata
-            }
-        })
-    }catch(err){
-        res.status(500).json({
-            status: 'Failed',
-            message : err
-        })
-    }
+    const {email} = req.body
+    // const patientdata = new addPatientModel(req.body)
+    // try{
+    //     await patientdata.save()
+    //     res.status(201).json({
+    //         status: 'Success',
+    //         data : {
+    //             patientdata
+    //         }
+    //     })
+    // }catch(err){
+    //     res.status(500).json({
+    //         status: 'Failed',
+    //         message : err
+    //     })
+    // }
+
+    addPatientModel.findOne({email:email})
+    .then(user => {
+        if(user) {res.status(205).json({
+            status:'err',
+            message:'Email Already exists'
+        })}
+        else{
+            const patientdata = new addPatientModel(req.body)
+             patientdata.save()
+             res.status(201).json({
+                status: 'Success',
+                data : {
+                    patientdata
+                }
+            })
+        }
+
+    })
 })
 
 

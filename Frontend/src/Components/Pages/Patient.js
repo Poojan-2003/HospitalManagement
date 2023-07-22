@@ -13,11 +13,12 @@ function Patient() {
   const AddPatient = async(e) =>{
     e.preventDefault();
     await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
-    .then(result =>{  
-      if(result.data.status === 'Failed'){
-        setModalOpen(false)
-        const cerror = result.data.message
-                toast.error(cerror, {
+    .then(result =>{
+       console.log(result)
+      if(result.status === 205){
+                setModalOpen(false)
+                
+                toast.error("Duplicate Email", {
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -39,9 +40,20 @@ function Patient() {
                 progress: undefined,
                 theme: "colored",
               });
+            }else{
+              toast.success("Patient Added successfully", {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
             }
            
-            window.location.reload()
+            
           }
        
           )
@@ -50,42 +62,22 @@ function Patient() {
     }
   
 
-  //Fetching Data
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:1337/AllPatient")
-  //     .then((res) => {
-  //       setAllPatient(res.data)
-  //     })
-  //     .catch((err) => {
-  //       toast.error(err, {
-  //       position: "bottom-right",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     });
-  //     });
-  // }, []);
-
-  // useEffect(()=>{
-  //   axios.get('http://localhost:1337/AllPatient')
-  //   .then(result => setAllPatient(result.data))
-  //   .catch(err => console.log(err))
-  // })
-  useEffect(async()=> {
-    
-       const response = await 
-                        fetch('http://localhost:1337/AllPatient');
-       const json = await response.json();
-       setAllPatient(json.data.AllPatientData);
-       
+  
+  useEffect(()=> {
+         
+      //  const response =  
+      //                    fetch('http://localhost:1337/AllPatient');
+      //  const alldata =  response.json();
+      //  setAllPatient(alldata.data.AllPatientData);
+      async function asyncCall() {
+     await axios.get('http://localhost:1337/AllPatient')
      
+      .then(result => {setAllPatient(result.data.data.AllPatientData); console.log(result.data.data.AllPatientData)})
+      .catch(err => console.log(err))
+      }
+      
     
-   
+   asyncCall()
   }, []);
 
   const deleteuser = (id) => {

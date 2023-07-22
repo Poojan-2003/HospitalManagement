@@ -1,0 +1,30 @@
+.INavDashboard{
+    margin-top: .5%;
+    margin-left: 2%;
+    font-size: 30px;
+    color:#386aff;
+  }
+  .INavDashfeature{
+    margin-left: -9.7%;
+    margin-top: 3.5%;
+  }
+  .IMfgdate{
+    margin-left: 21px;
+  }
+  .IExpdate{
+    margin-left: 40px;
+  }
+  .IFname{
+    display: flex;
+  }
+  .IDesc{
+    width: 258px;
+  }
+  .ITrow{
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .IFrow{
+    margin-top: 25px;
+    margin-left: 10px;
+  }

@@ -14,10 +14,8 @@ function Patient() {
     e.preventDefault();
     await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
     .then(result =>{
-       console.log(result)
       if(result.status === 205){
                 setModalOpen(false)
-                
                 toast.error("Duplicate Email", {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -56,7 +54,7 @@ function Patient() {
             
           }
        
-          )
+          ).then(window.location.reload())
     .catch(err => console.log(err))
  
     }
@@ -83,9 +81,8 @@ function Patient() {
   const deleteuser = (id) => {
     axios.delete('http://localhost:1337/DeletePatient/'+id)
     .then(res => {
-      
       if(res.status === 204){
-        window.location.reload()
+       
             toast.success("Patient Deleted successfully", {
             position: "bottom-right",
             autoClose: 5000,
@@ -96,6 +93,7 @@ function Patient() {
             progress: undefined,
             theme: "colored",
           });
+         
     
         }else if(res.status === 500){
                 toast.error(res.data.error, {
@@ -110,6 +108,7 @@ function Patient() {
       });
         }
     })
+    .then(window.location.reload())
     .catch(err => {
             toast.error(err, {
         position: "bottom-right",

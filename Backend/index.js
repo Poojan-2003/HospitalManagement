@@ -98,32 +98,33 @@ app.post('/api/login' , async(req , res) => {
     
 // })
 
-app.get('/AllPatient', async (req,res) => {
-    try{
-        const AllPatient = await addPatientModel.find({status:{$eq:1}}).then(documents => {
-            if (documents.length > 0) {
-              return res.send(documents)
-            } else {
-              console.log('No documents found');
-            }    
-          })
-          .catch(error => {
-            console.error('Error finding documents:', error);
+// app.get('/AllPatient', async (req,res) => {
+//     try{
+//         const AllPatient = await addPatientModel.find({status:{$eq:1}}).then(documents => {
+//             if (documents.length > 0) {
+//               return res.send(documents)
+//             } else {
+//               console.log('No documents found');
+//             }    
+//           })
+//           .catch(error => {
+//             console.error('Error finding documents:', error);
             
-          });
-        // res.send({status:'ok',data:AllPatient}) 
-    }catch(err){
-        console.log(err)
-    }
-})
+//           });
+//         // res.send({status:'ok',data:AllPatient}) 
+//     }catch(err){
+//         console.log(err)
+//     }
+// })
 
 
-app.delete('/DeletePatient/:id' , (res,req) => {
-    const id =req.params.id;
-    addPatientModel.findByIdAndDelete({_id:id})
-    .then( res =>{  res.json(res)})
-    
-})
+// app.delete('/DeletePatient/:id' , (req,res) => {
+//     const id =req.params.id;
+//     addPatientModel.findByIdAndDelete({_id:id})
+//     .then(res => {return res.send({status:'ok'})})
+//     .catch(err => res.json({status:'error',error:err}))    
+// })
+
 
 
 // app.post("/api/AddPatient" , (req,res) => {
@@ -132,25 +133,100 @@ app.delete('/DeletePatient/:id' , (res,req) => {
 //     .catch(err => res.json(err))
 // })
 
-app.post("/addPatient" , (req,res) => {
-    const {email} = req.body
+// app.post("/addPatient" , (req,res) => {
+//     const {email} = req.body
 
-     addPatientModel.findOne({email:email})
-    .then(user=>{
-        if(user){
-            return res.json({status:'error',error:'Duplicate Email'})
-        }else{
-            addPatientModel.create(req.body)
-            // .then(addpatient => res.json(addpatient))
-            .then(res.send({status:'ok'}))
-            // .catch(err => console.log(err))
-             .catch(res.send({status:'error',error:'Error In Inserting data'}))
-        }
-      }
-    )
+//      addPatientModel.findOne({email:email})
+//     .then(user=>{
+//         if(user){
+//             return res.json({status:'error',error:'Duplicate Email'})
+//         }else{
+//             addPatientModel.create(req.body)
+//             // .then(addpatient => res.json(addpatient))
+//             .then(res.send({status:'ok'}))
+//             // .catch(err => console.log(err))
+//              .catch(res.send({status:'error',error:'Error In Inserting data'}))
+//         }
+//       }
+//     )
     
    
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.get('/AllPatient', async (req,res) => {
+    const AllPatientData = await addPatientModel.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllPatientData
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
 })
+
+
+
+
+app.post('/addPatient', async(req,res) => {
+    const patientdata = new addPatientModel(req.body)
+    try{
+        await patientdata.save()
+        res.status(201).json({
+            status: 'Success',
+            data : {
+                patientdata
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'Failed',
+            message : err
+        })
+    }
+})
+
+
+app.delete('/DeletePatient/:id', async(req,res) => {
+    await addPatientModel.findByIdAndDelete(req.params.id)
+    
+    try{
+       res.status(204).json({
+          status : 'ok',
+          data : "Patient Deleted Successfully"
+      })
+    }catch(err){
+         res.status(500).json({
+            status: 'error',
+            message : err
+        })
+    }
+})
+
 
 app.listen(1337 , () => {
     console.log('Port 1337')

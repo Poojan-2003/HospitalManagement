@@ -4,19 +4,19 @@ import { Modal, ModalHeader } from "reactstrap";
 import { TextField } from "@mui/material";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
-import { NavLink } from 'react-router-dom';
+import { NavLink ,useNavigate } from 'react-router-dom';
 import "../Pages/Patient.css";
 import "react-toastify/dist/ReactToastify.css";
 
 function Patient() {
-
+  const navigate = useNavigate();
   const AddPatient = async(e) =>{
     e.preventDefault();
     await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
     .then(result =>{  
-      if(result.data.status === 'error'){
+      if(result.data.status === 'Failed'){
         setModalOpen(false)
-        const cerror = result.data.error
+        const cerror = result.data.message
                 toast.error(cerror, {
                 position: "bottom-right",
                 autoClose: 5000,
@@ -27,7 +27,7 @@ function Patient() {
                 progress: undefined,
                 theme: "colored",
               });
-            }else if(result.data.status === 'ok'){
+            }else if(result.data.status === 'Success'){
               setModalOpen(false)
               toast.success("Patient Added successfully", {
                 position: "bottom-right",
@@ -40,41 +40,73 @@ function Patient() {
                 theme: "colored",
               });
             }
+           
+            window.location.reload()
           }
-       )
+       
+          )
     .catch(err => console.log(err))
  
     }
   
 
   //Fetching Data
-  useEffect(() => {
-    axios
-      .get("http://localhost:1337/AllPatient")
-      .then((res) => {
-        setAllPatient(res.data)
-      })
-      .catch((err) => {
-        toast.error(err, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-      });
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:1337/AllPatient")
+  //     .then((res) => {
+  //       setAllPatient(res.data)
+  //     })
+  //     .catch((err) => {
+  //       toast.error(err, {
+  //       position: "bottom-right",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //     });
+  // }, []);
+
+  // useEffect(()=>{
+  //   axios.get('http://localhost:1337/AllPatient')
+  //   .then(result => setAllPatient(result.data))
+  //   .catch(err => console.log(err))
+  // })
+  useEffect(async()=> {
+    
+       const response = await 
+                        fetch('http://localhost:1337/AllPatient');
+       const json = await response.json();
+       setAllPatient(json.data.AllPatientData);
+       
+     
+    
+   
   }, []);
 
-
- //Deleting Patient
-  const deleteuser = async (id) => {
+  const deleteuser = (id) => {
     axios.delete('http://localhost:1337/DeletePatient/'+id)
     .then(res => {
-      window.location.reload()
-      toast.success("Patient Deleted successfully", {
+      
+      if(res.status === 204){
+        window.location.reload()
+            toast.success("Patient Deleted successfully", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+    
+        }else if(res.status === 500){
+                toast.error(res.data.error, {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -84,9 +116,10 @@ function Patient() {
         progress: undefined,
         theme: "colored",
       });
-     })
-    .catch(err =>{
-      toast.error(err, {
+        }
+    })
+    .catch(err => {
+            toast.error(err, {
         position: "bottom-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -97,9 +130,7 @@ function Patient() {
         theme: "colored",
       });
     })
-
-}
-  
+  }
 
   const [modalOpen, setModalOpen] = useState(false);
   const [fname, setfname] = useState("");
@@ -134,7 +165,7 @@ function Patient() {
                   }}
                 >
                   <div>
-                    <i class={val.icon} id="PIconForSidebar"></i>
+                    <i className={val.icon} id="PIconForSidebar"></i>
                   </div>{" "}
                   {val.title}
                 </div>
@@ -145,7 +176,7 @@ function Patient() {
 
         <div className="PMainData">
           <div className="PNavBarForMainData">
-            <i class="fa-sharp fa-solid fa-hospital" id="PNavBarIcon"></i>
+            <i className="fa-sharp fa-solid fa-hospital" id="PNavBarIcon"></i>
             <div className="PNavDashboard">Patient</div>
             <div className="PNavDashfeature">Patient's Features</div>
           </div>
@@ -417,7 +448,7 @@ function Patient() {
                   </tr>
                 </thead>
                 <tbody>
-                  {AllPatient.map((data, i) => (
+                  {AllPatient?.map((data, i) => (
                     <tr key={i}>
                       <td>{++i}</td>
                       <td>{data.fname}</td>
@@ -426,7 +457,7 @@ function Patient() {
                       <td><div className="Active">Active</div></td>
                       <td className="Paction">
                         <div><NavLink to={`UpdatePatient/${data._id}`} ><i class="fa-solid fa-pen"></i></NavLink></div>
-                        <div className="PDelete"><i class="fa-solid fa-trash" id="deleteicon" onClick={() => deleteuser(data._id)}></i></div>
+                        <div className="PDelete"><i class="fa-solid fa-trash" id="deleteicon" onClick={(e) => deleteuser(data._id)}></i></div>
                         </td>
                       
                     </tr>

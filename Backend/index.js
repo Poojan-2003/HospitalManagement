@@ -8,6 +8,7 @@ mongoose.connect('mongodb://localhost:27017/SGP')
 .then(console.log("Connected to database"))
 
 const jwt = require('jsonwebtoken')
+const AddMedicineModel = require('./Models/AddMedicine')
 const app = express()
 
 app.use(cors())
@@ -239,6 +240,67 @@ app.delete('/DeletePatient/:id', async(req,res) => {
         })
     }
 })
+
+//Fetching Medicine
+app.get('/AllMedicine', async (req,res) => {
+    const AllMedicine = await AddMedicineModel.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllMedicine
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
+
+
+//Adding Medicine
+app.post('/AddMedicineData', async(req,res) => {
+    const {name} = req.body
+    AddMedicineModel.findOne({name:name})
+    .then(user => {
+        if(user) {res.status(205).json({
+            status:'err',
+            message:'Medicine Already exists'
+        })}
+        else{
+            const MedicineData = new AddMedicineModel(req.body)
+            MedicineData.save()
+             res.status(201).json({
+                status: 'Success',
+                data : {
+                    MedicineData
+                }
+            })
+        }
+
+    })
+})
+
+//Deleting Medicine
+app.delete('/DeleteMedicine/:id', async(req,res) => {
+    await AddMedicineModel.findByIdAndDelete(req.params.id)
+    
+    try{
+       res.status(204).json({
+          status : 'ok',
+          data : "Medicine Deleted Successfully"
+      })
+    }catch(err){
+         res.status(500).json({
+            status: 'error',
+            message : err
+        })
+    }
+})
+
+
 
 
 app.listen(1337 , () => {

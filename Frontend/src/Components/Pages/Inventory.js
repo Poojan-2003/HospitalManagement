@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Dashboard } from "../Dashboard/Dashboard";
 import "../Dashboard/AdminDashboard.css";
 import "../Pages/Patient.css";
@@ -13,8 +13,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import dayjs from 'dayjs';
+import axios from "axios";
+import {NavLink} from "react-router-dom"
 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 function Inventory() {
 
@@ -26,8 +29,67 @@ function Inventory() {
   const [quantity,setquantity] = useState()
   const [price,setprice] = useState()
   const [modalOpen, setModalOpen] = useState(false);
+  // const [postImage, setPostImage] = useState( { myFile : ""})
+  const [AllMedicine, setAllMedicine] = useState([]);
+  const [detailshow , setdetailshow] = useState([])
 
-  function AddMedicine(){}
+
+  const AddMedicine = async(e) =>{
+    e.preventDefault();
+    await axios.post("http://localhost:1337/AddMedicineData",{price,quantity,mfgdate,expirydate,category,description,name})
+    .then(window.location.reload())
+    .then(alert("Medicine Added Successfully"))
+ 
+    }
+
+  //   const handleFileUpload = async (e) => {
+  //     const file = e.target.files[0];
+  //     const base64 = await convertToBase64(file);
+  //     console.log(base64)
+  //     setPostImage({ ...postImage, myFile : base64 })
+  //   }
+
+  // function convertToBase64(file){
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result)
+  //     };
+  //     fileReader.onerror = (error) => {
+  //       reject(error)
+  //     }
+  //   })
+  // }
+
+  //Fetching Medicine
+  useEffect(()=> {
+  async function asyncCall() {
+   await axios.get('http://localhost:1337/AllMedicine')
+   
+    .then(result => {setAllMedicine(result.data.data.AllMedicine); })
+    .catch(err => console.log(err))
+    } 
+ asyncCall()
+}, []);
+const DeleteMedicine = (id) => {
+  axios.delete('http://localhost:1337/DeleteMedicine/'+id)
+  .then(window.location.reload())
+  .then(alert("Medicine Deleted Successfully"))
+}
+
+const toggleShown = username => {
+  const shownstate = detailshow.slice();
+  const index = shownstate.indexOf(username)
+
+  if(index >= 0){
+    shownstate.splice(index,1)
+    setdetailshow(shownstate);
+  }else{
+    shownstate.push(username)
+    setdetailshow(shownstate)
+  }
+}
 
   return (
     <div>
@@ -112,7 +174,7 @@ function Inventory() {
                        </div>
                       <div className='IExpdate'>
                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker  required label="Expiry Date" value={expirydate} onChange={(newValue) => setmfgdate(newValue)} />
+                        <DatePicker  required label="Expiry Date" value={expirydate} onChange={(newValue) => setexpirydate(newValue)} />
                        </LocalizationProvider>
                        </div>
                       
@@ -148,10 +210,11 @@ function Inventory() {
                     </div>
                   </div>
                   <div className='IFrow'>
-                        
+                        <div>
                         <FormControl sx={{ m: 1, minWidth: 260 }}>
                         <InputLabel id="demo-simple-select-label">Category</InputLabel>
                         <Select
+                          defaultValue = "" 
                           required
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
@@ -159,18 +222,38 @@ function Inventory() {
                           label="Category"
                           onChange={(e)=>setcategory(e.target.value)}
                         >
-                          <MenuItem value={"Liquid"}>Liquid</MenuItem>
+                          <MenuItem value={"Liquid"}>Syrup</MenuItem>
                           <MenuItem value={"Capsules"}>Capsules</MenuItem>
                           <MenuItem value={"Drops"}>Drops</MenuItem>
-                          <MenuItem value={"Injections"}>Injections.</MenuItem>
+                          <MenuItem value={"Injections"}>Injections</MenuItem>
                         </Select>
                         </FormControl> 
-
+                        </div>
+                      {/* <div className='Iimg'>
+                      <input type="file" id="file" style={{display: "none"}} accept='.jpeg, .png, .jpg'
+                       onChange={(e) => handleFileUpload(e)}/>
+                      <label htmlFor="file" >
+                      Upload Image<i class="fa-solid fa-cloud-arrow-up" id='img' ></i>
+                      </label>
+                      </div> */}
                   </div>
-                  <div className="SubmitBtn">
+
+                  <div className="ISubmitBtn">
                     <button type="submit" className="Sbtn">
                       Add Medicine
                     </button>
+                    <ToastContainer
+                       position="bottom-right"
+                       autoClose={5000}
+                       hideProgressBar={false}
+                       newestOnTop={false}
+                       closeOnClick
+                       rtl={false}
+                       pauseOnFocusLoss
+                       draggable
+                       pauseOnHover
+                       theme="colored"
+                    />
                   </div>
                 </form>
               </div>
@@ -184,11 +267,66 @@ function Inventory() {
               {" "}
               Add Medicine 
             </button>
+            <table className="Ptable">
+                <thead className="Thead">
+                  <tr>
+                    <th></th>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {AllMedicine?.map((data, i) => (
+                    <React.Fragment key={data._id}>
+                    <tr key={i}>
+                      <td><i id="Iicon" class="fa-solid fa-greater-than fa-2xl" onClick={()=>toggleShown(data.name)}></i></td>
+                      <td>{++i}</td>
+                      <td>{data.name}</td>
+                      <td>{data.description}</td>
+                      <td>{data.category}</td>
+                      <td>{data.quantity}</td>
+                      <td>{data.price}</td>
+                      <td className="Paction">
+                        <div><NavLink to={`UpdatePatient/${data._id}`} ><i class="fa-solid fa-pen"></i></NavLink></div>
+                        <div className="PDelete"><i class="fa-solid fa-trash" id="deleteicon" onClick={(e) => DeleteMedicine(data._id)}></i><ToastContainer
+                       position="bottom-right"
+                       autoClose={5000}
+                       hideProgressBar={false}
+                       newestOnTop={false}
+                       closeOnClick
+                       rtl={false}
+                       pauseOnFocusLoss
+                       draggable
+                       pauseOnHover
+                       theme="colored"
+                    />
+                          </div>
+                        </td>
+                      </tr>
+                      {detailshow.includes(data.name) && (
+                          <tr className='Additional-info'>
+                          <td>Name : {data.name}</td>
+                          <td>Description : {data.description}</td>
+                          <td>Category : {data.category}</td>
+                          <td>Manufacture Date : {data.mfgdate}</td>
+                          <td>Expiry Date : {data.expirydate}</td>
+                          <td>Quantity: {data.quantity}</td>
+                          <td>Price : {data.price}</td>
+                        </tr>
+                      )}
+                      
+                      </React.Fragment>
+                    
+                  ))}
+                </tbody>
+              </table> 
             </div>
-          <div>
-            
-           
-          </div>
+        
         </div>
       </div>
     </div>

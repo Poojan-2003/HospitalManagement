@@ -9,6 +9,7 @@ mongoose.connect('mongodb://localhost:27017/SGP')
 
 const jwt = require('jsonwebtoken')
 const AddMedicineModel = require('./Models/AddMedicine')
+const AddDoctorModel = require('./Models/AddDoctor')
 const app = express()
 
 app.use(cors())
@@ -301,6 +302,81 @@ app.delete('/DeleteMedicine/:id', async(req,res) => {
 })
 
 
+
+app.get('/AllDoctor', async (req,res) => {
+    const AllDoctorData = await AddDoctorModel.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllDoctorData
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
+
+
+
+
+app.post('/AddDoctor', async(req,res) => {
+    const {email} = req.body
+    // const patientdata = new addPatientModel(req.body)
+    // try{
+    //     await patientdata.save()
+    //     res.status(201).json({
+    //         status: 'Success',
+    //         data : {
+    //             patientdata
+    //         }
+    //     })
+    // }catch(err){
+    //     res.status(500).json({
+    //         status: 'Failed',
+    //         message : err
+    //     })
+    // }
+
+    AddDoctorModel.findOne({email:email})
+    .then(user => {
+        if(user) {res.status(205).json({
+            status:'err',
+            message:'Doctor Already exists'
+        })}
+        else{
+            const Doctordata = new AddDoctorModel(req.body)
+            Doctordata.save()
+             res.status(201).json({
+                status: 'Success',
+                data : {
+                    Doctordata
+                }
+            })
+        }
+
+    })
+})
+
+
+app.delete('/DeleteDoctor/:id', async(req,res) => {
+    await AddDoctorModel.findByIdAndDelete(req.params.id)
+    
+    try{
+       res.status(204).json({
+          status : 'ok',
+          data : "Doctor Deleted Successfully"
+      })
+    }catch(err){
+         res.status(500).json({
+            status: 'error',
+            message : err
+        })
+    }
+})
 
 
 app.listen(1337 , () => {

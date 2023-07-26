@@ -15,9 +15,10 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from "axios";
 import {NavLink} from "react-router-dom"
-
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+import dayjs from "dayjs";
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 function Inventory() {
 
@@ -29,10 +30,9 @@ function Inventory() {
   const [quantity,setquantity] = useState()
   const [price,setprice] = useState()
   const [modalOpen, setModalOpen] = useState(false);
-  // const [postImage, setPostImage] = useState( { myFile : ""})
   const [AllMedicine, setAllMedicine] = useState([]);
   const [detailshow , setdetailshow] = useState([])
-
+  const [open, setOpen] = React.useState(false);
 
   const AddMedicine = async(e) =>{
     e.preventDefault();
@@ -41,26 +41,6 @@ function Inventory() {
     .then(alert("Medicine Added Successfully"))
  
     }
-
-  //   const handleFileUpload = async (e) => {
-  //     const file = e.target.files[0];
-  //     const base64 = await convertToBase64(file);
-  //     console.log(base64)
-  //     setPostImage({ ...postImage, myFile : base64 })
-  //   }
-
-  // function convertToBase64(file){
-  //   return new Promise((resolve, reject) => {
-  //     const fileReader = new FileReader();
-  //     fileReader.readAsDataURL(file);
-  //     fileReader.onload = () => {
-  //       resolve(fileReader.result)
-  //     };
-  //     fileReader.onerror = (error) => {
-  //       reject(error)
-  //     }
-  //   })
-  // }
 
   //Fetching Medicine
   useEffect(()=> {
@@ -72,13 +52,16 @@ function Inventory() {
     } 
  asyncCall()
 }, []);
-const DeleteMedicine = (id) => {
+
+  //Delete Medicine
+  
+  const DeleteMedicine = (id) => {
   axios.delete('http://localhost:1337/DeleteMedicine/'+id)
   .then(window.location.reload())
   .then(alert("Medicine Deleted Successfully"))
-}
+  }
 
-const toggleShown = username => {
+  const toggleShown = username => {
   const shownstate = detailshow.slice();
   const index = shownstate.indexOf(username)
 
@@ -89,7 +72,7 @@ const toggleShown = username => {
     shownstate.push(username)
     setdetailshow(shownstate)
   }
-}
+  }
 
   return (
     <div>
@@ -284,7 +267,15 @@ const toggleShown = username => {
                   {AllMedicine?.map((data, i) => (
                     <React.Fragment key={data._id}>
                     <tr key={i}>
-                      <td><i id="Iicon" class="fa-solid fa-greater-than fa-2xl" onClick={()=>toggleShown(data.name)}></i></td>
+                      {/* <td><i  class="fa-solid fa-greater-than fa-2xl" onClick={()=>toggleShown(data.name)}></i></td> */}
+                      <td><IconButton
+                        id="Iicon"
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => {setOpen(!open); toggleShown(data.name)} }
+                      >
+                      {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                      </IconButton></td>
                       <td>{++i}</td>
                       <td>{data.name}</td>
                       <td>{data.description}</td>
@@ -308,17 +299,22 @@ const toggleShown = username => {
                           </div>
                         </td>
                       </tr>
+                     
                       {detailshow.includes(data.name) && (
                           <tr className='Additional-info'>
-                          <td>Name : {data.name}</td>
-                          <td>Description : {data.description}</td>
-                          <td>Category : {data.category}</td>
-                          <td>Manufacture Date : {data.mfgdate}</td>
-                          <td>Expiry Date : {data.expirydate}</td>
-                          <td>Quantity: {data.quantity}</td>
-                          <td>Price : {data.price}</td>
+                            {/* <div className='CData'> */}
+                          <td><b>Name</b> : {data.name}</td>
+                          <td><b>Description</b> : {data.description}</td>
+                          <td><b>Category</b> : {data.category}</td>
+                          
+                          <td><b>Manufacture Date :</b> {dayjs(data.mfgdate).format('DD/MM/YYYY')}</td>
+                          <td><b>Expiry Date :</b>{dayjs(data.expirydate).format('DD/MM/YYYY')} </td>
+                          <td><b>Quantity:</b> {data.quantity}</td>
+                          <td><b>Price :</b> {data.price}</td>
+                            {/* </div> */}
                         </tr>
                       )}
+                      
                       
                       </React.Fragment>
                     

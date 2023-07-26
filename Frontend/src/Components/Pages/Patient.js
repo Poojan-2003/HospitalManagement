@@ -7,9 +7,15 @@ import { toast, ToastContainer } from "react-toastify";
 import { NavLink ,useNavigate } from 'react-router-dom';
 import "../Pages/Patient.css";
 import "react-toastify/dist/ReactToastify.css";
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 function Patient() {
-  const navigate = useNavigate();
+  
+  const [open, setOpen] = React.useState(false);
+  const [detailshow , setdetailshow] = useState([])
+
   const AddPatient = async(e) =>{
     e.preventDefault();
     await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
@@ -58,9 +64,7 @@ function Patient() {
     .catch(err => console.log(err))
  
     }
-  
 
-  
   useEffect(()=> {
          
       //  const response =  
@@ -121,6 +125,19 @@ function Patient() {
         theme: "colored",
       });
     })
+  }
+
+  const toggleShown = username => {
+    const shownstate = detailshow.slice();
+    const index = shownstate.indexOf(username)
+  
+    if(index >= 0){
+      shownstate.splice(index,1)
+      setdetailshow(shownstate);
+    }else{
+      shownstate.push(username)
+      setdetailshow(shownstate)
+    }
   }
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -430,6 +447,7 @@ function Patient() {
                <table className="Ptable">
                 <thead className="Thead">
                   <tr>
+                    <th></th>
                     <th>Sr.No</th>
                     <th>Name</th>
                     <th>Age</th>
@@ -440,7 +458,17 @@ function Patient() {
                 </thead>
                 <tbody>
                   {AllPatient?.map((data, i) => (
+                    <React.Fragment key={data._id}>
                     <tr key={i}>
+                     <td><IconButton
+                        id="Iicon"
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => {setOpen(!open); toggleShown(data.fname)} }
+                      >
+                      {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                      </IconButton></td>
+                     
                       <td>{++i}</td>
                       <td>{data.fname}</td>
                       <td>{data.age}</td>
@@ -452,6 +480,15 @@ function Patient() {
                         </td>
                       
                     </tr>
+                    {detailshow.includes(data.fname) && (
+                          <tr className='Additional-info'>
+                            {/* <div className='CData'> */}
+                          <td><b>Name</b> : {data.fname}</td>
+                         
+                            {/* </div> */}
+                        </tr>
+                      )}
+                      </React.Fragment>
                   ))}
                 </tbody>
               </table> 

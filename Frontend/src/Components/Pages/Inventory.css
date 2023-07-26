@@ -21,8 +21,9 @@
     width: 258px;
   }
   .ITrow{
+    display: flex;
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
   }
   .IFrow{
     display: flex;
@@ -55,5 +56,6 @@
   #Iicon:hover{
     cursor: pointer;
   }
-  
- 
+  /* .CData{
+    margin-left: 10%;
+  } */

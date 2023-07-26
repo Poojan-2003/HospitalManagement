@@ -226,7 +226,7 @@ thead {
 th,
 td {
   /* border: 1px solid #443C68; */
-  min-width: 165px;
+  min-width: 148px;
   padding: 1rem;
   font-weight: normal;
 
@@ -245,7 +245,7 @@ td {
   margin-left: 30%;
 }
 #deleteicon{
-  color: #3366ff;
+  color: red;
 }
 #deleteicon:hover{
   cursor: pointer;

@@ -17,6 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { NavLink ,useNavigate } from 'react-router-dom';
 import FormLabel from '@mui/material/FormLabel';
 import "../Pages/Doctor.css"
+import { green } from "@mui/material/colors";
 
 function Doctor() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -33,6 +34,18 @@ function Doctor() {
   const [detailshow , setdetailshow] = useState([])
   const [open, setOpen] = React.useState(false);
 
+  
+  function Greeting(props){
+    
+    const isActive = props.isActive
+    
+    if(isActive === 1){
+      return <div className="DActive">Active</div>
+    }else{
+      return <div className="DIActive">InActive</div>
+    }
+
+  }
   const AddDoctor = async (e) => {
     e.preventDefault();
     await axios
@@ -91,7 +104,7 @@ function Doctor() {
       async function asyncCall() {
      await axios.get('http://localhost:1337/AllDoctor')
      
-      .then(result => {setAllDoctor(result.data.data.AllDoctorData); console.log(result.data.data.AllPatientData)})
+      .then(result => {setAllDoctor(result.data.data.AllDoctorData); console.log(result.data.data.AllDoctorData)})
       .catch(err => console.log(err))
       }
       
@@ -357,6 +370,7 @@ function Doctor() {
                   <th>Gender</th>
                   <th>Contact No</th>
                   <th>Speciality</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -386,7 +400,9 @@ function Doctor() {
                       <td>{data.name}</td>
                       <td>{data.gender}</td>
                       <td>{data.contact}</td>
+                      
                       <td>{data.speciality}</td>
+                     <td><Greeting isActive = {data.status}  /></td>
                       
                       <td className="Paction">
                         <div>

@@ -5,6 +5,7 @@ function Home() {
   return (
     <div className='home'>
         <div className='Nav'>
+            <Link to={'/AdminLogin'} className='Admin'>Admin's Login</Link>
             <Link to={'/DoctorLogin'} className='DocLog'>Doctor's Login</Link>
             <Link to={'/PatientLogin'} className='PatientLog'>Patient's Login</Link>
         </div>

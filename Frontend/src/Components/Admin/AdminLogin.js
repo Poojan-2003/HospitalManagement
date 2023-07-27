@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 
-const Login = () => {
+const AdminLogin = () => {
 	const [email,setemail] = useState('')
 	const [password , setpassword] = useState('')
 	
@@ -14,7 +14,7 @@ const Login = () => {
 
 	async function loginDoctor(event){
 		event.preventDefault()
-		const response = await fetch('http://localhost:1337/api/login' , {
+		const response = await fetch('http://localhost:1337/api/Adminlogin' , {
 		method:'POST',
 		headers:{
 			'Content-Type':'application/json'
@@ -26,12 +26,12 @@ const Login = () => {
 			}),
 		})
 		const data = await response.json()
-		localStorage.setItem("userInfo",JSON.stringify(data))
+
 		if(data.user){
 			alert('Login Successful')
-			window.location.href = '/MainDoctorDashboard'
+			window.location.href = '/AdminDashboard'
 		}else{
-			alert('Please check your UserName and Password')
+			alert('Please check your username and password')
 		}
 		console.log(data)
 	  }
@@ -79,4 +79,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default AdminLogin;

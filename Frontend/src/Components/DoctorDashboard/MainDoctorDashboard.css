@@ -1,0 +1,22 @@
+ /* .Ddata{
+    margin-left: 40px;
+    margin-top: 40px;
+    width: 1200px;
+    height: 579px;
+    border: 1px solid black;
+
+}  */
+ .Ddata{
+    position: fixed;
+    margin-left: 40px;
+    margin-top: 40px;
+    width: 1200px;
+    height: 579px;
+    background-color: white;
+    
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} 
+.DCstatus{
+    margin-top: 2%;
+    margin-left: 2%
+}

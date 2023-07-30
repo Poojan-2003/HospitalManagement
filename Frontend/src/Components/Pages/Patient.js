@@ -190,7 +190,7 @@ function Patient() {
           </div>
           <div>
             
-            <div className="DisplayP">
+            <div className="">
             <Modal
               size="lg"
               isOpen={modalOpen}

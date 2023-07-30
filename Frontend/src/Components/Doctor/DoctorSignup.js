@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 // import jwt from 'jasonwebtoken'
-
+import {message} from "antd"
 const DoctorSignup = () => {
 
   //const history = useHistory()
@@ -34,7 +34,7 @@ const DoctorSignup = () => {
   if(data.error !== undefined)
     alert(data.error)
 	if(data.status === 'ok'){
-    alert('SignUp Successfull')
+    message.success("SignUp Successfully");
 		window.location.href='/DoctorLogin'
 	}
   }

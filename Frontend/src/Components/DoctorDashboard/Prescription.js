@@ -33,42 +33,14 @@ function Prescription() {
 
         <div className="MainData">
           <div className="NavBarForMainData">
-            <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
-            <div className="NavDashboard">Dashboard</div>
-            <div className="NavDashfeature">Dashboard Features</div>
+            <i class="fa-solid fa-prescription-bottle-medical" id="NavBarIcon"></i>
+            <div className="NavDashboard">Prescription</div>
+            <div className="NavDashfeature">Send Prescription</div>
           </div>
-          <div className="MainBox">
-            <div className="SubBox">
-              <div className="LeftSubbox">
-                <i class="fa-sharp fa-solid fa-tablets"></i>
-                <div className="TextInSubbox">Medicine to be Expired</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
-            <div className="SubBox" id="RightColumn">
-              <div className="LeftSubbox">
-                <i class="fa-solid fa-bed"></i>
-                <div className="TextInSubbox">Empty Beds</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
-          </div>
-          <div className="row2">
-            <div className="SubBox">
-              <div className="LeftSubbox">
-                <i class="fa-solid fa-user-doctor"></i>
-                <div className="TextInSubbox">Total Doctors</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
+          
 
-            <div className="SubBox" id="RightColumn">
-              <div className="LeftSubbox">
-                <i class="fa-solid fa-users-medical"></i>
-                <div className="TextInSubbox">Total Patients</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
+          <div className="">
+            <div className="PSendP">Send Prescription To:</div>
           </div>
         </div>
       </div>

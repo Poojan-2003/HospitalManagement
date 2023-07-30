@@ -108,7 +108,7 @@ function Inventory() {
             <div className="INavDashfeature">Inventory Features</div>
           </div>
 
-            <div className=" DisplayP">
+            <div className="">
             <Modal
               size="lg"
               isOpen={modalOpen}

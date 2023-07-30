@@ -26,7 +26,8 @@ const Login = () => {
 			}),
 		})
 		const data = await response.json()
-		localStorage.setItem("userInfo",JSON.stringify(data))
+		localStorage.setItem("email",JSON.stringify(data.email))
+		localStorage.setItem("id",JSON.stringify(data.id))
 		if(data.user){
 			alert('Login Successful')
 			window.location.href = '/MainDoctorDashboard'

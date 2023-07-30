@@ -4,15 +4,22 @@ const mongoose = require('mongoose')
 const DocLog = require('./Models/DoctorLoginSchema')
 // const AddPatientLog = require('./Models/AddPatient')
 const addPatientModel = require('./Models/AddPatient')
-mongoose.connect('mongodb://localhost:27017/SGP')
+mongoose.connect('mongodb://localhost:27017/SGP',{
+    useNewUrlParser: true,
+  
+    useUnifiedTopology: true,
+    
+})
 .then(console.log("Connected to database"))
 
 const jwt = require('jsonwebtoken')
 const AddMedicineModel = require('./Models/AddMedicine')
 const AddDoctorModel = require('./Models/AddDoctor')
 const AdminCredentialDetails = require('./Models/AddAdmin')
+const LeaveSchema = require('./Models/AddLeave')
 const app = express()
-
+const cookieParser = require('cookie-parser')
+app.use(cookieParser());
 app.use(cors())
 app.use(express.json())
 
@@ -47,7 +54,7 @@ app.post('/api/login' , async(req , res) => {
             },
             'secret123'
             )
-            return res.json({status:'ok',user:token})
+            return res.json({status:'ok',user:token,email:user.email,id:user._id})
         }else{
             return res.json({status:'error',user:false})
         }
@@ -68,6 +75,7 @@ app.post('/api/Adminlogin' , async(req , res) => {
         },
         'secret123'
         )
+        res.cookie
         return res.json({status:'ok',user:token})
     }else{
         return res.json({status:'error',user:false})
@@ -193,6 +201,7 @@ app.post('/AddMedicineData', async(req,res) => {
     })
 })
 
+
 //Deleting Medicine
 app.delete('/DeleteMedicine/:id', async(req,res) => {
     await AddMedicineModel.findByIdAndDelete(req.params.id)
@@ -282,6 +291,51 @@ app.delete('/DeleteDoctor/:id', async(req,res) => {
     }catch(err){
          res.status(500).json({
             status: 'error',
+            message : err
+        })
+    }
+})
+
+app.put('/UpdateStatus',async(req,res)=>{
+    const userEmail = req.body.email
+    const withoutFirstAndLast = userEmail.slice(1, -1);
+    console.log(userEmail)
+    console.log(req.body.status)
+    // const result = await AddDoctorModel.findOneAndUpdate({email:userEmail},{$set:{status:req.body.value}})
+    AddDoctorModel.updateOne({email:withoutFirstAndLast},{$set:{status:req.body.status}})
+    .then (result => res.send(result))
+    .catch(err => console.log(err))
+    
+    
+    
+    // AddDoctorModel.findByIdAndUpdate({_id:req.body.id},{email:"abc@gmail.com"})
+    // .then(user=>res.json(user))
+})
+
+
+app.post('/AddLeave',async(req,res) => {
+    const leave = new LeaveSchema(req.body)
+    leave.save()
+    res.status(201).json({
+        status: 'Success',
+        data : {
+            leave
+        }
+    })
+})
+
+app.get('/LeaveApp', async (req,res) => {
+    const LeaveApplication = await LeaveSchema.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                LeaveApplication
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
             message : err
         })
     }

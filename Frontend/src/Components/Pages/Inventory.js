@@ -205,7 +205,7 @@ function Inventory() {
                           label="Category"
                           onChange={(e)=>setcategory(e.target.value)}
                         >
-                          <MenuItem value={"Liquid"}>Syrup</MenuItem>
+                          <MenuItem value={"Syrup"}>Syrup</MenuItem>
                           <MenuItem value={"Capsules"}>Capsules</MenuItem>
                           <MenuItem value={"Drops"}>Drops</MenuItem>
                           <MenuItem value={"Injections"}>Injections</MenuItem>

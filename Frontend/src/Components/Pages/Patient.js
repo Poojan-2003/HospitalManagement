@@ -10,57 +10,33 @@ import "react-toastify/dist/ReactToastify.css";
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-
+import {message} from "antd"
 function Patient() {
   
   const [open, setOpen] = React.useState(false);
   const [detailshow , setdetailshow] = useState([])
+	const navigate = useNavigate();
 
   const AddPatient = async(e) =>{
     e.preventDefault();
     await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
     .then(result =>{
-      if(result.status === 205){
-                setModalOpen(false)
-                toast.error("Duplicate Email", {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            }else if(result.data.status === 'Success'){
-              setModalOpen(false)
-              toast.success("Patient Added successfully", {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            }else{
-              toast.success("Patient Added successfully", {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-            }
+      setModalOpen(false)
+       const timer = setTimeout(()=>{
+        if(result.data.status === 'Success'){
+          message.success("Patient Added Successfully")
+          
+
+        }else{
+          message.error("Error Occurred While Adding Patient")
+        }
+       },1000)
+       return () => clearTimeout(timer);
            
             
           }
        
-          ).then(window.location.reload())
+          ).then(window.location.reload(false)).then( message.error("Error Occurred While Adding Patient"))
     .catch(err => console.log(err))
  
     }
@@ -84,35 +60,14 @@ function Patient() {
 
   const deleteuser = (id) => {
     axios.delete('http://localhost:1337/DeletePatient/'+id)
-    .then(res => {
-      if(res.status === 204){
-       
-            toast.success("Patient Deleted successfully", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });
-         
-    
-        }else if(res.status === 500){
-                toast.error(res.data.error, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-        }
-    })
     .then(window.location.reload())
+    .then(res => {
+      message.success('Deleted Successfully')
+      const timer = setTimeout(()=>{
+        // if(res.status === 204)
+      },5000)
+      return () => clearTimeout(timer)
+    })
     .catch(err => {
             toast.error(err, {
         position: "bottom-right",

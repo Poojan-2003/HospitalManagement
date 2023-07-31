@@ -2,11 +2,13 @@ import { useState } from "react";
 // import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import {message} from "antd"
+import {useNavigate} from "react-router-dom"
 
 const Login = () => {
 	const [email,setemail] = useState('')
 	const [password , setpassword] = useState('')
-	
+	const navigate = useNavigate();
 	// const [data, setData] = useState({ email: "", password: "" });
 	// const [error, setError] = useState("");
 
@@ -27,12 +29,14 @@ const Login = () => {
 		})
 		const data = await response.json()
 		localStorage.setItem("email",JSON.stringify(data.email))
-		localStorage.setItem("id",JSON.stringify(data.id))
+
 		if(data.user){
-			alert('Login Successful')
-			window.location.href = '/MainDoctorDashboard'
+			message.success("SignIn Successfully")
+			navigate("/MainDoctorDashboard") 
+			// window.location.href = '/MainDoctorDashboard'
+			
 		}else{
-			alert('Please check your UserName and Password')
+			message.error("Please Check Your Credential")
 		}
 		console.log(data)
 	  }

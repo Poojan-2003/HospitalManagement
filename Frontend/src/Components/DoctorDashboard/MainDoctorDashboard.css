@@ -38,6 +38,7 @@
     color: red;
 }
 .PSendP{
+    font-size: larger;
     margin-left: 60px;
     margin-top: 45px;
 }
@@ -47,4 +48,28 @@
     margin-right: 20px;
     height: 20px;
     width: 20px;
+}
+.PSelectP{
+    margin-top: 20px;
+    margin-left: -15px;
+}
+.PSbtn{
+    height: 50px;
+    width: 200px;
+    margin-top: 250px;
+    color: white;
+    background-color: #3366ff;
+    border: none;
+    margin-left:450px;
+}
+.PDesc{
+    margin-left: -10px;
+    margin-top: 20px;
+}
+.P{
+    width: 540px;
+}
+.AppFeature{
+    margin-top: 49px;
+    margin-left: -175px;
 }

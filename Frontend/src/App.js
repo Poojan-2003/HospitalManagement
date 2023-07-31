@@ -19,6 +19,10 @@ import MainDoctorDashboard from "./Components/DoctorDashboard/MainDoctorDashboar
 import Appointment from "./Components/DoctorDashboard/Appointment";
 import Prescription from "./Components/DoctorDashboard/Prescription";
 import AdminLogin from "./Components/Admin/AdminLogin";
+import PatientAppointment from "./Components/PatientSide/PatientAppointment";
+import PatientDashboard from "./Components/PatientSide/PatientDashboard";
+import PatientPrescription from "./Components/PatientSide/PatientPrescription";
+
 function App() {
   // const user = localStorage.getItem("token");
   return (
@@ -41,6 +45,9 @@ function App() {
           <Route exact path = '/MainDoctorDashboard' element = {<MainDoctorDashboard />}></Route>
           <Route exact path = '/Appointment' element = {<Appointment />}></Route>
           <Route exact path = '/Prescription' element = {<Prescription />}></Route>
+          <Route exact path = '/SeePrescription' element = {<PatientPrescription />}></Route>
+          <Route exact path = '/BookAppointment' element = {<PatientAppointment />}></Route>
+          <Route exact path = '/PatientDashboard' element = {<PatientDashboard />}></Route>
           <Route exact path='/Patient/UpdatePatient/:id' element={<UpdatePatient />}></Route>
           <Route exact path='*' element = {<NoPage />}></Route> 
         </Routes>

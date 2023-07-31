@@ -1,25 +1,22 @@
-import React from "react";
-
-import { DoctorDashboard } from "../DoctorDashboard/DoctorDashboard";
+import React from 'react'
+import { Patientdata } from './Patientdata';
 import "../Dashboard/AdminDashboard.css";
 import "../DoctorDashboard/MainDoctorDashboard.css";
-
-function Appointment() {
+function PatientAppointment() {
   return (
     <div>
       <div className="MainNavbar"></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">
-            {DoctorDashboard.map((val, key) => {
+            {Patientdata.map((val, key) => {
               return (
                 <div
                   key={key}
                   className="RowData"
                   id={window.location.pathname === val.link ? "active" : ""}
                   onClick={() => {
-                     window.location.pathname = val.link;
-                    
+                    window.location.pathname = val.link;
                   }}
                 >
                   <div>
@@ -34,15 +31,15 @@ function Appointment() {
 
         <div className="MainData">
           <div className="NavBarForMainData">
-            <i class="fa-solid fa-calendar-check" id="NavBarIcon"></i>
-            <div className="NavDashboard">Appointment</div>
-            <div className="AppFeature">Appointment Features</div>
+            <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
+            <div className="NavDashboard">Dashboard</div>
+            <div className="NavDashfeature">Dashboard Features</div>
           </div>
           
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Appointment;
+export default PatientAppointment

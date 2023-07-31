@@ -341,7 +341,41 @@ app.get('/LeaveApp', async (req,res) => {
     }
 })
 
+app.get('/AllPatientNameEmail', async(req,res)=>{
+    const AllPatientNameEmail = await addPatientModel.find({},{fname:1,email:1,_id:0})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllPatientNameEmail
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
 
+
+
+app.get('/AllMedicineData',async(req,res)=>{
+    const AllMedicineData = await AddMedicineModel.find({},{name:1,category:1,_id:0})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllMedicineData
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
 app.listen(1337 , () => {
     console.log('Port 1337')
 })

@@ -6,17 +6,17 @@ const DocLog = require('./Models/DoctorLoginSchema')
 const addPatientModel = require('./Models/AddPatient')
 mongoose.connect('mongodb://localhost:27017/SGP',{
     useNewUrlParser: true,
-  
-    useUnifiedTopology: true,
-    
+    useUnifiedTopology: true,   
 })
 .then(console.log("Connected to database"))
 
 const jwt = require('jsonwebtoken')
+const PresSchema = require('./Models/AddPrescription')
 const AddMedicineModel = require('./Models/AddMedicine')
 const AddDoctorModel = require('./Models/AddDoctor')
 const AdminCredentialDetails = require('./Models/AddAdmin')
 const LeaveSchema = require('./Models/AddLeave')
+const AddPatientCredential = require('./Models/AddPatientCredential')
 const app = express()
 const cookieParser = require('cookie-parser')
 app.use(cookieParser());
@@ -376,6 +376,92 @@ app.get('/AllMedicineData',async(req,res)=>{
         })
     }
 })
+
+app.post('/api/Patientregister' , async(req , res) => {
+    
+    try{
+        const user = await AddPatientCredential.create({
+            name:req.body.name,
+            email:req.body.email,
+            password:req.body.password 
+        })
+        res.json({status:'ok'})
+    }catch(err){
+        res.json({status:'error',error:'Email Already Exists'})
+    }
+    
+})
+
+
+
+app.post('/CheckCredlogin' , async(req , res) => {
+    
+    const user = await AddPatientCredential.findOne({
+        email:req.body.email,
+        password:req.body.password
+    })
+    if(user){
+        const token = jwt.sign({
+            name:user.name,
+            email:user.email
+        },
+        'secret123'
+        )
+        return res.json({status:'ok',email:user.email,id:user._id})
+    }else{
+        return res.json({status:'error',user:false})
+    }
+    
+})
+
+app.get('/PrescriptionData' , async(req,res)=>{
+    const AllPrescriptionData = await PresSchema.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllPrescriptionData
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
+
+
+app.post('/SendPrescription' , async(req , res) => {
+    
+    // try{
+    //     const user = await PresSchema.create({
+    //         name:req.body.patientname,
+    //         email:req.body.patientemail,
+    //         category:req.body.category,
+    //         medicine:req.body.medicine,
+    //         description:req.body.description, 
+    //     })
+    //     res.json({status:'ok'})
+    // }catch(err){
+    //     res.json({status:'error',error:'Email Already Exists'})
+    // }
+    
+   
+    
+        
+        
+            const PrescriptionDataa = new PresSchema(req.body)
+            PrescriptionDataa.save()
+             res.status(201).json({
+                status: 'Success',
+                data : {
+                    PrescriptionDataa
+                }
+            })
+    
+})
+
 app.listen(1337 , () => {
     console.log('Port 1337')
 })

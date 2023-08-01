@@ -9,7 +9,8 @@ import Select from "@mui/material/Select";
 import axios from "axios";
 import {message} from "antd"
 function Prescription() {
-  const [patient, setpatient] = useState();
+  const [patientname, setpatientname] = useState();
+  const [patientemail, setpatientemail] = useState();
   const [category , setcategory] = useState()
   const [description, setdescription] = useState()
   const [medicine, setmedicine] = useState([])
@@ -42,7 +43,7 @@ function Prescription() {
 
   const SendPrescription = async(e) =>{
     e.preventDefault();
-    await axios.post("http://localhost:1337/SendPrescription",{patient,category,description,medicine})
+    await axios.post("http://localhost:1337/SendPrescription",{patientname,patientemail,category,description,medicine})
     .then(result =>{console.log(result); message.success("Prescription Send Successfully")})
     .catch(err => console.log(err))
  
@@ -98,14 +99,35 @@ function Prescription() {
                     required
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    value={patient}
+                    value={patientname}
                     label="Patient Name"
-                    onChange={(e) => setpatient(e.target.value)}
+                    onChange={(e) => setpatientname(e.target.value)}
                   >
 
                      {patientdata?.map((data, i) => (
                       <MenuItem value={data.fname}>
-                        {data.fname}-{data.email}
+                        {data.fname}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <FormControl sx={{ m: 1, minWidth: 260 }}>
+                  <InputLabel id="demo-simple-select-label">
+                    Patient's Email
+                  </InputLabel>
+                  <Select
+                    defaultValue=""
+                    required
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={patientemail}
+                    label="Patient email"
+                    onChange={(e) => setpatientemail(e.target.value)}
+                  >
+
+                     {patientdata?.filter(patientdata => patientdata.fname === patientname).map((data, i) => (
+                      <MenuItem value={data.email}>
+                        {data.email}
                       </MenuItem>
                     ))}
                   </Select>

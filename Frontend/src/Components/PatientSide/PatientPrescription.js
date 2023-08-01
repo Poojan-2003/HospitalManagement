@@ -1,8 +1,40 @@
-import React from 'react'
+import React , {useState,useEffect} from 'react'
 import { Patientdata } from './Patientdata';
 import "../Dashboard/AdminDashboard.css";
 import "../DoctorDashboard/MainDoctorDashboard.css";
+import "./PatientSide.css"
+import "../Pages/Patient.css"
+import axios from 'axios';
+import dayjs from "dayjs";
+
 function PatientPrescription() {
+
+  const [PrescriptionData ,setPrescriptionData] = useState([])
+  
+
+   const patientemail = localStorage.getItem("Patientemail")
+   console.log(patientemail)
+   const finalemail = patientemail.slice(1, -1);
+   console.log(finalemail)
+  
+  useEffect(()=> {
+         
+    //  const response =  
+    //                    fetch('http://localhost:1337/AllPatient');
+    //  const alldata =  response.json();
+    //  setAllPatient(alldata.data.AllPatientData);
+    async function asyncCall() {
+      await axios.get('http://localhost:1337/PrescriptionData')
+   
+    .then(result => {setPrescriptionData(result.data.data.AllPrescriptionData); console.log()})
+    .catch(err => console.log(err))
+    }
+    
+  
+ asyncCall()
+}, []);
+
+
   return (
     <div>
     <div className="MainNavbar"></div>
@@ -31,11 +63,48 @@ function PatientPrescription() {
 
       <div className="MainData">
         <div className="NavBarForMainData">
-          <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
-          <div className="NavDashboard">Dashboard</div>
-          <div className="NavDashfeature">Dashboard Features</div>
+          <i class="fa-solid fa-prescription-bottle-medical" id="NavBarIcon"></i>
+          <div className="NavDashboard">Prescription</div>
+          <div className="NavDashfeature">Prescription Features</div>
         </div>
         
+        <div>
+          <div className='PDetail'>Prescription Details :</div>
+
+          <div className='PTable'>
+          <table className="Ptable">
+                <thead className="Thead">
+                  <tr>
+                   
+                    <th>Sr.No</th>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Medicine</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PrescriptionData?.filter(PrescriptionData => PrescriptionData.patientemail === finalemail).map((data, i) => (
+                    
+                    <tr key={i}>
+                  
+                     
+                      <td>{++i}</td>
+                      
+                      <td>{dayjs(data.date).format("DD/MM/YYYY")}</td>
+                      <td>{data.category}</td>
+                      <td>{data.medicine},</td>
+                      <td>{data.description}</td>
+                      
+                      
+                    </tr>
+                   
+                     
+                  ))}
+                </tbody>
+              </table> 
+          </div>
+        </div>
       </div>
     </div>
   </div>

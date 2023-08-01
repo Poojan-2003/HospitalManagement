@@ -2,13 +2,12 @@ import {BrowserRouter , Routes , Route} from "react-router-dom"
 
 import Home from './Components/Home/Home';
 import "./App.css"
-import PatientLogin from "./Components/Patient/PatientLogin";
+import PatientLogin from "./Components/PatientLogin/PatientLogin"
 import DoctorLogin from "./Components/DoctorLogin/DoctorLogin";
 import NoPage from "./Components/NoPage/NoPage"
 import DoctorSignup from "./Components/Doctor/DoctorSignup";
-import PatientSignUp from "./Components/Patient/PatientSignUp";
+import PatientSignUp from "./Components/PatientSignUp/PatientSignUp";
 import AdminDashboard from "./Components/Dashboard/AdminDashboard";
-import Patient from "./Components/Pages/Patient";
 import Laboratry from "./Components/Pages/Laboratry";
 import Doctor from "./Components/Pages/Doctor";
 import Inventory from "./Components/Pages/Inventory";
@@ -22,6 +21,7 @@ import AdminLogin from "./Components/Admin/AdminLogin";
 import PatientAppointment from "./Components/PatientSide/PatientAppointment";
 import PatientDashboard from "./Components/PatientSide/PatientDashboard";
 import PatientPrescription from "./Components/PatientSide/PatientPrescription";
+import Patient from "./Components/Pages/Patient";
 
 function App() {
   // const user = localStorage.getItem("token");
@@ -39,8 +39,8 @@ function App() {
           <Route exact path = '/Doctor' element = {<Doctor />}></Route>
           <Route exact path = '/Employee' element = {<Employee />}></Route>
           <Route exact path = '/Inventory' element = {<Inventory />}></Route>
-          <Route exact path = '/Laboratry' element = {<Laboratry />}></Route>
           <Route exact path = '/Patient' element = {<Patient />}></Route>
+          <Route exact path = '/Laboratry' element = {<Laboratry />}></Route>
           <Route exact path = '/LeavePage' element = {<LeavePage />}></Route>
           <Route exact path = '/MainDoctorDashboard' element = {<MainDoctorDashboard />}></Route>
           <Route exact path = '/Appointment' element = {<Appointment />}></Route>

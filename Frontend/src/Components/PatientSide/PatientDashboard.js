@@ -5,6 +5,7 @@ import axios from "axios"
 import { Patientdata } from './Patientdata';
 import "./PatientDashboard.css"
 import image from "../../Assests/OQ6UTW0.jpg"
+import {Link} from "react-router-dom"
 function PatientDashboard() {
   // eslint-disable-next-line
 const [AllDoctor,setAllDoctor] = useState([])
@@ -69,7 +70,7 @@ const [AllDoctor,setAllDoctor] = useState([])
                 <div className='Dname'>Name : {data.name}</div>
                 <div className='Dspeciality'>Speciality : {data.speciality}</div>
                 <div className='DFee'>Consultancy Fees : $500/hr</div>
-                <div><button className='PBtn' onClick={()=>{}}>Book Now !</button></div>
+                <div><Link to={`/BookAppointment`}><button className='PBtn' onClick={()=>{localStorage.setItem("Did",data._id)}}>Book Now !</button></Link></div>
               </div>
             </div>
               );

@@ -6,7 +6,7 @@ export const Patientdata = [
     },
     {
         title:"Appointment",
-        link:"/BookAppointment",
+        link:`/BookAppointment`,
         icon:"fa-solid fa-hospital-user"
     },
     {

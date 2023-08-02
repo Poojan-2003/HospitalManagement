@@ -9,8 +9,8 @@ import { TextField } from "@mui/material";
 import axios from "axios";
 import "../DoctorDashboard/MainDoctorDashboard.css";
 import {message} from "antd"
-import { Navigate } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+
+import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import logo from "../../Assests/pending-icon.png"
 function LeavePage() {
@@ -103,11 +103,11 @@ function Greeting(props){
 
         <div className="MainData">
           <div className="NavBarForMainData">
-            <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
+            <i class="fa-solid fa-hospital-user" id="NavBarIcon"></i>
             <div className="NavDashboard">LeavePage</div>
-            <div className="NavDashfeature">Apply For Leave</div>
+            <div className="DLeave">Apply For Leave</div>
           </div>
-          <div className="">
+          <div className="PBtn">
             <Modal
               size="lg"
               isOpen={modalOpen}

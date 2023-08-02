@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../Dashboard/AdminDashboard.css";
 import "../DoctorDashboard/MainDoctorDashboard.css";
-import { useDispatch, useSelector } from "react-redux";
-import Switch from "@mui/material/Switch";
 import axios from "axios"
 import { Patientdata } from './Patientdata';
+import "./PatientDashboard.css"
+import image from "../../Assests/OQ6UTW0.jpg"
 function PatientDashboard() {
+  // eslint-disable-next-line
+const [AllDoctor,setAllDoctor] = useState([])
+  useEffect(()=> {
+         
+    //  const response =  
+    //                    fetch('http://localhost:1337/AllPatient');
+    //  const alldata =  response.json();
+    //  setAllPatient(alldata.data.AllPatientData);
+    async function asyncCall() {
+   await axios.get('http://localhost:1337/AllDoctor')
+   
+    .then(result => {setAllDoctor(result.data.data.AllDoctorData); console.log(result.data.data.AllDoctorData)})
+    .catch(err => console.log(err))
+    }
+    
+  
+ asyncCall()
+}, []);
   return (
     <div>
       <div className="MainNavbar"></div>
@@ -37,8 +55,32 @@ function PatientDashboard() {
             <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
             <div className="NavDashboard">Dashboard</div>
             <div className="NavDashfeature">Dashboard Features</div>
+          </div> 
+
+
+
+          <div className='MainDiv'>
+          {AllDoctor.map((data, i) => {
+              return (
+                <div className='MainOutDiv'>
+
+              <div className='Dimg'><img src={image} className='PDimg'></img></div>
+              <div className='PRightData'>
+                <div className='Dname'>Name : {data.name}</div>
+                <div className='Dspeciality'>Speciality : {data.speciality}</div>
+                <div className='DFee'>Consultancy Fees : $500/hr</div>
+                <div><button className='PBtn' onClick={()=>{}}>Book Now !</button></div>
+              </div>
+            </div>
+              );
+            })}
+            
+
+
+
           </div>
-          
+
+
         </div>
       </div>
     </div>

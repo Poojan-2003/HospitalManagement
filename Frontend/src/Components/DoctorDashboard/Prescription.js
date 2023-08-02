@@ -82,7 +82,7 @@ function Prescription() {
               id="NavBarIcon"
             ></i>
             <div className="NavDashboard">Prescription</div>
-            <div className="NavDashfeature">Send Prescription</div>
+            <div className="PFeature">Prescription Features</div>
           </div>
 
           <div className="">
@@ -113,7 +113,7 @@ function Prescription() {
                 </FormControl>
                 <FormControl sx={{ m: 1, minWidth: 260 }}>
                   <InputLabel id="demo-simple-select-label">
-                    Patient's Email
+                    Select Email
                   </InputLabel>
                   <Select
                     defaultValue=""
@@ -159,7 +159,7 @@ function Prescription() {
 
                 <FormControl sx={{ m: 1, minWidth: 260 }}>
                   <InputLabel id="demo-simple-select-label">
-                  {category}
+                  Select Medicine
                   </InputLabel>
                   <Select
                   multiple
@@ -168,7 +168,7 @@ function Prescription() {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={medicine}
-                    label='${category}'
+                    label='Select Medicine'
                     onChange={(e) => setmedicine(e.target.value)}
                   >
                    {AllMedicineData?.filter(AllMedicineData => AllMedicineData.category === category).map((data, i) => (

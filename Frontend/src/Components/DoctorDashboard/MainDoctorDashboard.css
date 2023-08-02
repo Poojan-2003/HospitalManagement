@@ -54,13 +54,21 @@
     margin-left: -15px;
 }
 .PSbtn{
-    height: 50px;
+    height: 60px;
     width: 200px;
-    margin-top: 250px;
+    margin-top: 100px;
     color: white;
     background-color: #3366ff;
     border: none;
     margin-left:450px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+.PSbtn:hover{
+    cursor: pointer;
+    transform: scale(0.9);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 .PDesc{
     margin-left: -10px;
@@ -72,4 +80,16 @@
 .AppFeature{
     margin-top: 49px;
     margin-left: -175px;
+}
+.PFeature{
+    margin-top: 4%;
+    margin-left: -12.2%;
+}
+.DLeave{
+    margin-top: 3.8%;
+    margin-left: -11.8%;
+}
+.PBtn{
+    margin-top: 2%;
+    margin-left: 2%;
 }

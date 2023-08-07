@@ -26,9 +26,9 @@ export const Dashboard = [
         icon:"fa-solid fa-warehouse"
     },
     {
-        title:"Laboratry",
+        title:"Leave Approval",
         link:"/Laboratry",
-        icon:"fa-solid fa-flask-vial"
+        icon:"fa-solid fa-calendar-days"
     },
     
     

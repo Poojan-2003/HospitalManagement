@@ -93,3 +93,20 @@
     margin-top: 2%;
     margin-left: 2%;
 }
+.DAPP{
+    height: 40px;
+    border: none;
+    background-color: #30ed36;
+    color: white;
+}
+.DReject{
+    height: 40px;
+    margin-left: 15px;
+    border: none;
+    background-color: red;
+    color: white;
+}
+.DReject:hover , .DAPP:hover{
+    cursor: pointer;
+    transform: scale(0.9);
+}

@@ -23,7 +23,7 @@ function MainDoctorDashboard() {
   // const {userInfo} = userlogin
   // const dispatch = useDispatch()
   
-  const email= localStorage.getItem("email");
+  const email= localStorage.getItem("Doctoremail");
 
   // useEffect(()=>{
   //   axios.get("http://localhost:1337/Data/"+emailD)

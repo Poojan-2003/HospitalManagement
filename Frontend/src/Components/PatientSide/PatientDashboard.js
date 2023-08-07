@@ -70,7 +70,7 @@ const [AllDoctor,setAllDoctor] = useState([])
                 <div className='Dname'>Name : {data.name}</div>
                 <div className='Dspeciality'>Speciality : {data.speciality}</div>
                 <div className='DFee'>Consultancy Fees : $500/hr</div>
-                <div><Link to={`/BookAppointment`}><button className='PBtn' onClick={()=>{localStorage.setItem("Did",data._id)}}>Book Now !</button></Link></div>
+                <div><Link to={`/BookAppointment`}><button className='PBtn' onClick={()=>{localStorage.setItem("Dname",data.name); localStorage.setItem("Demail",data.email)}}>Book Now !</button></Link></div>
               </div>
             </div>
               );

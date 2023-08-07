@@ -201,10 +201,16 @@
 .PBdate{
   margin-top: -10px;
 }
+/* 
+table:hover{
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-
+} */
 
 table {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
   /* margin: 5rem auto; */
   margin-top: 3%;
   margin-left: 3%;
@@ -219,6 +225,7 @@ table {
 
 li, p, a, td{
   font-weight: normal;
+
 
   /* font-size: 1rem; */
   /* line-height: 1.6; */
@@ -266,4 +273,14 @@ td {
   background-color: #07bc0c;
   border: 1px solid #07bc0c;
   border-radius: 10px;
+}
+
+.PSearch{
+  margin-top: 30px;
+  margin-left: 45px;
+}
+.PatientABtn{
+  margin-top: -55px;
+  margin-left: 900px;
+
 }

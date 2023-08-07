@@ -28,7 +28,8 @@ const Login = () => {
 			}),
 		})
 		const data = await response.json()
-		localStorage.setItem("email",JSON.stringify(data.email))
+		localStorage.setItem("Doctoremail",JSON.stringify(data.email))
+		localStorage.setItem("Doctorname",JSON.stringify(data.name))
 
 		if(data.user){
 			message.success("SignIn Successfully")

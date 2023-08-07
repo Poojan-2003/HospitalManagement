@@ -1,9 +1,49 @@
-import React from "react";
-
+import React, {  useState, useEffect } from "react";
+import axios from "axios"
 import { Dashboard } from "../Dashboard/Dashboard";
 import "../Dashboard/AdminDashboard.css";
+import "./Laboratry.css"
+import { TextField } from "@mui/material";
+import dayjs from "dayjs";
 
 function Laboratry() {
+  const [Query, setQuery] = useState("");
+  const [LeaveData , setLeaveData] = useState([])
+  useEffect(()=> {
+         
+    //  const response =  
+    //                    fetch('http://localhost:1337/AllPatient');
+    //  const alldata =  response.json();
+    //  setAllPatient(alldata.data.AllPatientData);
+    async function asyncCall() {
+   await axios.get("http://localhost:1337/GetLeave")
+   
+    .then(result => {setLeaveData(result.data.data.GetLeave); console.log(result.data.data.GetLeave)})
+    .catch(err => console.log(err))
+    }
+    
+  
+ asyncCall()
+}, []);
+
+
+const Update1 = async(email) => {
+  const status = 1;
+ 
+  await axios.post("http://localhost:1337/UpdateLeave",{status,email})
+  .then(result => {
+    console.log(result)
+  }).catch(err => console.log(err))
+}
+const Update2 = async(email) => {
+  const status = 2
+ 
+  await axios.post("http://localhost:1337/UpdateLeave",{status,email})
+  .then(result => {
+    console.log(result)
+  }).catch(err => console.log(err))
+  
+  }
   return (
     <div>
       <div className="MainNavbar"></div>
@@ -33,43 +73,50 @@ function Laboratry() {
 
         <div className="MainData">
           <div className="NavBarForMainData">
-            <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
-            <div className="NavDashboard">Appointment</div>
-            <div className="NavDashfeature">Appointment Features</div>
+            <i class="fa-solid fa-calendar-days" id="NavBarIcon"></i>
+            
+            <div className="NavDashboard">Leave </div>
+            <div className="LeaveApproval">Leave Approval</div>
           </div>
-          <div className="MainBox">
-            <div className="SubBox">
-              <div className="LeftSubbox">
-                <i class="fa-sharp fa-solid fa-tablets"></i>
-                <div className="TextInSubbox">Medicine to be Expired</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
-            <div className="SubBox" id="RightColumn">
-              <div className="LeftSubbox">
-                <i class="fa-solid fa-bed"></i>
-                <div className="TextInSubbox">Empty Beds</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
-          </div>
-          <div className="row2">
-            <div className="SubBox">
-              <div className="LeftSubbox">
-                <i class="fa-solid fa-user-doctor"></i>
-                <div className="TextInSubbox">Total Doctors</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
-
-            <div className="SubBox" id="RightColumn">
-              <div className="LeftSubbox">
-                <i class="fa-solid fa-users-medical"></i>
-                <div className="TextInSubbox">Total Patients</div>
-              </div>
-              <div className="NumberInSubbox">3</div>
-            </div>
-          </div>
+          
+          <div className="PSearch"><TextField  id="outlined-basic" label="Search Doctor Name" variant="outlined" onChange={(e) => setQuery(e.target.value)}/></div>
+          <table className="Ptable" >
+                <thead className="Thead">
+                  <tr>
+                    
+                    <th>Sr.No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>duration</th>
+                    <th>Reason</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {LeaveData?.filter(LeaveData => LeaveData.name.toLowerCase().includes(Query)).filter(LeaveData => LeaveData.approve === 0).map((data, i) => (
+                   
+                    <React.Fragment key={data._id}>
+                    <tr key={i}>
+              
+                     
+                      <td>{++i}</td>
+                      <td>{data.name}</td>
+                      <td>{data.email}</td>
+                      <td> {dayjs(data.startdate).format('DD/MM/YYYY')}</td>
+                      <td> {dayjs(data.enddate).format('DD/MM/YYYY')}</td>
+                      <td>{data.duration}</td>
+                      <td>{data.reason}</td>
+                      <td><button className="LApp" onClick={ () => Update1(data.email)} >Approve</button> <button className="LRej" onClick={ () => Update2(data.email)}>Reject</button></td>
+                     
+                      
+                    </tr>
+                    
+                      </React.Fragment>
+                  ))}
+                </tbody>
+              </table> 
         </div>
       </div>
     </div>

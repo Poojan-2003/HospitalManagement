@@ -23,9 +23,10 @@
     border-radius:100% ;
     width: 200px;
     height: 200px;
+    border: 7px solid #3366ff;
 }
 .PDimg:hover{
-    transform: scale(1.1);
+    transform: scale(0.9);
 }
 .Dimg{
     margin-left: 5%;
@@ -41,7 +42,7 @@
 .DFee{
     margin-bottom:10% ;
 }
-.PBtn{
+/* .PBtn{
     margin-top: 4%;
     border: none;
     background-color: #3366ff;
@@ -51,4 +52,22 @@
 }
 .PBtn:hover{
     transform: scale(0.8);
+} */
+.PC{
+    width: 295px;
+}
+.PCR{
+    width: 295px;
+    margin-left: 130px;
+    margin-top: 20px;
+
+}
+.PDoctor{
+    margin-top: -20px;
+    margin-left: 35%;
+    font-size: smaller;
+    margin-bottom: 50px;
+}
+.Admin{
+    color: #3366ff;
 }

@@ -16,7 +16,6 @@ function Patient() {
   const [open, setOpen] = React.useState(false);
   const [detailshow , setdetailshow] = useState([])
 	const navigate = useNavigate();
-
   const AddPatient = async(e) =>{
     e.preventDefault();
     await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
@@ -48,7 +47,7 @@ function Patient() {
       //  const alldata =  response.json();
       //  setAllPatient(alldata.data.AllPatientData);
       async function asyncCall() {
-     await axios.get('http://localhost:1337/AllPatient')
+     await axios.get("http://localhost:1337/AllPatient")
      
       .then(result => {setAllPatient(result.data.data.AllPatientData); console.log(result.data.data.AllPatientData)})
       .catch(err => console.log(err))
@@ -56,7 +55,7 @@ function Patient() {
       
     
    asyncCall()
-  }, []);
+}, []);
 
   const deleteuser = (id) => {
     axios.delete('http://localhost:1337/DeletePatient/'+id)
@@ -110,7 +109,10 @@ function Patient() {
   const [height, setheight] = useState("");
   const [weight, setweight] = useState("");
   const [AllPatient, setAllPatient] = useState([]);
-
+  const [Query, setQuery] = useState("");
+  // const searchhandler = (data) => {
+  //   return data.filter((AllPatient) => AllPatient.fname.toLowerCase().includes(Query))
+  // }
   return (
     <div>
       <div className="PMainNavbar"></div>
@@ -146,7 +148,12 @@ function Patient() {
           <div>
             
             <div className="">
-            <Modal
+            
+            {/* <div><input type="text" placeholder="search" onChange={(e) => setQuery(e.target.value)}></input></div> */}
+            <div className="PSearch"><TextField  id="outlined-basic" label="Search Name" variant="outlined" onChange={(e) => setQuery(e.target.value)}/></div>
+            
+            
+            <div className="PatientABtn"><Modal
               size="lg"
               isOpen={modalOpen}
               toggle={() => setModalOpen(!modalOpen)}
@@ -386,7 +393,7 @@ function Patient() {
             >
               {" "}
               Add Patient
-            </button>
+            </button></div>
             <ToastContainer
               position="bottom-right"
               autoClose={5000}
@@ -399,7 +406,7 @@ function Patient() {
               pauseOnHover
               theme="colored"
             />
-               <table className="Ptable">
+               <table className="Ptable" >
                 <thead className="Thead">
                   <tr>
                     <th></th>
@@ -412,7 +419,8 @@ function Patient() {
                   </tr>
                 </thead>
                 <tbody>
-                  {AllPatient?.map((data, i) => (
+                  {AllPatient?.filter(AllPatient => AllPatient.fname.toLowerCase().includes(Query)).map((data, i) => (
+                   
                     <React.Fragment key={data._id}>
                     <tr key={i}>
                      <td><IconButton

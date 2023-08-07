@@ -21,11 +21,16 @@ function LeavePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
   const [leavedata,setleavedata] = useState([])
+  
   const AddLeave = async (e) => {
     e.preventDefault();
+    const dname = localStorage.getItem("Doctorname")
+    const demail = localStorage.getItem("Doctoremail")
+    const name = dname.slice(1,-1)
+    const email = demail.slice(1,-1)
     await axios
       .post("http://localhost:1337/AddLeave", {
-        startdate,enddate,duration,reason
+        startdate,enddate,duration,reason,name,email
       })
       .then(result=>{
         console.log(result)

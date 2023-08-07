@@ -2,6 +2,7 @@ import { useState } from "react";
 // import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+import { message } from "antd";
 
 const AdminLogin = () => {
 	const [email,setemail] = useState('')
@@ -28,10 +29,10 @@ const AdminLogin = () => {
 		const data = await response.json()
 
 		if(data.user){
-			alert('Login Successful')
+			message.success("Login Successfull")
 			window.location.href = '/AdminDashboard'
 		}else{
-			alert('Please check your username and password')
+			message.error("Please Check Your Username and Password")
 		}
 		console.log(data)
 	  }

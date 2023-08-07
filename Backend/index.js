@@ -17,6 +17,7 @@ const AddDoctorModel = require('./Models/AddDoctor')
 const AdminCredentialDetails = require('./Models/AddAdmin')
 const LeaveSchema = require('./Models/AddLeave')
 const AddPatientCredential = require('./Models/AddPatientCredential')
+const AppointmentSchema = require('./Models/AddAppointment') 
 const app = express()
 const cookieParser = require('cookie-parser')
 app.use(cookieParser());
@@ -54,7 +55,7 @@ app.post('/api/login' , async(req , res) => {
             },
             'secret123'
             )
-            return res.json({status:'ok',user:token,email:user.email,id:user._id})
+            return res.json({status:'ok',user:token,email:user.email,name:user.name})
         }else{
             return res.json({status:'error',user:false})
         }
@@ -85,6 +86,7 @@ app.post('/api/Adminlogin' , async(req , res) => {
 
 
 app.get('/AllPatient', async (req,res) => {
+    
     const AllPatientData = await addPatientModel.find({})
     try{
         res.status(200).json({
@@ -461,6 +463,95 @@ app.post('/SendPrescription' , async(req , res) => {
             })
     
 })
+
+
+app.post('/SendAppointment' , async(req , res) => {
+    
+    // try{
+    //     const user = await PresSchema.create({
+    //         name:req.body.patientname,
+    //         email:req.body.patientemail,
+    //         category:req.body.category,
+    //         medicine:req.body.medicine,
+    //         description:req.body.description, 
+    //     })
+    //     res.json({status:'ok'})
+    // }catch(err){
+    //     res.json({status:'error',error:'Email Already Exists'})
+    // }
+    
+   
+    
+        
+        
+            const AppointmentData = new AppointmentSchema(req.body)
+            AppointmentData.save()
+             res.status(201).json({
+                status: 'Success',
+                data : {
+                    AppointmentData
+                }
+            })
+    
+})
+
+
+app.get('/AppointmentData' , async(req,res)=>{
+    const AllAppointmetnData = await AppointmentSchema.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllAppointmetnData
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
+
+
+app.post('/UpdateAppoin' , async(req,res) => {
+    
+    const user = AppointmentSchema.findOne({email:req.body.email})
+    if(user){
+    AppointmentSchema.updateOne({email:req.body.email},{$set:{status:req.body.status}})
+    .then (result => res.send(result))
+    .catch(err => console.log(err))
+    }else{
+        res.send("No U")
+    }
+})
+
+
+
+app.get('/GetLeave', async (req,res) => {
+    const GetLeave = await LeaveSchema.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                GetLeave
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
+})
+
+app.post('/UpdateLeave' , async(req,res) => {
+   LeaveSchema.updateOne({email:req.body.email},{$set:{approve:req.body.status}})
+    .then (result => res.send(result))
+    .catch(err => console.log(err))
+   
+})
+
 
 app.listen(1337 , () => {
     console.log('Port 1337')

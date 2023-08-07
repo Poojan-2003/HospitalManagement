@@ -10,7 +10,7 @@ const AddDoctor = new mongoose.Schema({
     speciality:{type:String,required:true},
     gender:{type:String,required:true},
     birthdate:{type:Date,required:true},
-    status:{type:Number,default:1}
+    status:{type:Number,default:0}
    
     
 

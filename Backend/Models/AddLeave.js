@@ -7,7 +7,9 @@ const ApplyLeaveSchema = new Schema({
     enddate:{type:Date , required:true},
     duration:{type:Number,required:true},
     reason:{type:String,required:true},
-    approve:{type:Number,default:0}
+    approve:{type:Number,default:0},
+    name:{type:String},
+    email:{type:String}
 
 },{collection:'AddLeaveSchema'}
 )

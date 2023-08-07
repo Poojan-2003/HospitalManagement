@@ -9,6 +9,8 @@ const Prescription = new Schema({
     category:{type:String,required:true},
     medicine:{type:Array,required:true},
     description:{type:String,required:true},
+    doctorname:{type:String,required:true},
+    doctoremail:{type:String,required:true},
     
 
 },{collection:'PrescriptionSchema'}

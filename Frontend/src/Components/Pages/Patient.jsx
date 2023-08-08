@@ -11,6 +11,9 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import {message} from "antd"
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 function Patient() {
   
   const [open, setOpen] = React.useState(false);
@@ -18,7 +21,7 @@ function Patient() {
 	const navigate = useNavigate();
   const AddPatient = async(e) =>{
     e.preventDefault();
-    await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,height,weight})
+    await axios.post("http://localhost:1337/addPatient",{fname,mname,lname,mobile,email,age,gender,bloodgroup,marriedstatus,address,birthdate,height,weight})
     .then(result =>{
       setModalOpen(false)
        const timer = setTimeout(()=>{
@@ -95,11 +98,12 @@ function Patient() {
   }
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [Pmodal, setPmodal] = useState(false);
   const [fname, setfname] = useState("");
   const [mname, setmname] = useState("");
   const [lname, setlname] = useState("");
   const [mobile, setmobile] = useState("");
-  const [birthdate, setbirthdate] = useState("");
+  const [birthdate, setbirthdate] = React.useState();
   const [gender, setgender] = useState("");
   const [email, setemail] = useState("");
   const [age, setage] = useState("");
@@ -113,9 +117,39 @@ function Patient() {
   // const searchhandler = (data) => {
   //   return data.filter((AllPatient) => AllPatient.fname.toLowerCase().includes(Query))
   // }
+
+
+  function Logout (){
+    window.location.href='/'
+  }
   return (
     <div>
-      <div className="PMainNavbar"></div>
+      <div className="PMainNavbar">
+        
+        <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="PMainBody">
         <div className="PMainSidebar">
           <div className="PSideBarData">
@@ -153,7 +187,8 @@ function Patient() {
             <div className="PSearch"><TextField  id="outlined-basic" label="Search Name" variant="outlined" onChange={(e) => setQuery(e.target.value)}/></div>
             
             
-            <div className="PatientABtn"><Modal
+            <div className="PatientABtn">
+              <Modal
               size="lg"
               isOpen={modalOpen}
               toggle={() => setModalOpen(!modalOpen)}
@@ -328,9 +363,14 @@ function Patient() {
                   </div>
                   <div className="Firow">
                     <div className="Fname">
-                        <div className="PBdate">Birthdate : </div>
-                        <br></br>
-                        <input  required className="Bdate" type="date" value={birthdate} onChange={(e)  => {setbirthdate(e.target.value); console.log(e.target.value)}}></input>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DatePicker
+                          required
+                          label="Birthday"
+                          value={birthdate}
+                          onChange={(newValue) => setbirthdate(newValue)}
+                        />{" "}
+                      </LocalizationProvider>
                     </div>
                     <div className="Fname">
                       <div>Select Gender :</div>

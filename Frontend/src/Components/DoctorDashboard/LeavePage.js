@@ -9,11 +9,15 @@ import { TextField } from "@mui/material";
 import axios from "axios";
 import "../DoctorDashboard/MainDoctorDashboard.css";
 import {message} from "antd"
-
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import logo from "../../Assests/pending-icon.png"
 function LeavePage() {
+  function Logout (){
+    window.location.href='/'
+  }
+  const [Pmodal, setPmodal] = useState(false);
+
   const [startdate, setstartdate] = useState();
   const [enddate, setenddate] = useState();
   const [duration, setduration] = useState();
@@ -82,7 +86,30 @@ function Greeting(props){
 }
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"><div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">

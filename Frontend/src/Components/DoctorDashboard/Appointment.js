@@ -5,13 +5,17 @@ import { DoctorDashboard } from "../DoctorDashboard/DoctorDashboard";
 import "../Dashboard/AdminDashboard.css";
 import "../DoctorDashboard/MainDoctorDashboard.css";
 import dayjs from 'dayjs';
+import { Modal, ModalHeader } from "reactstrap";
 
 function Appointment() {
   const [Appointment ,setAppointment] = useState([])
   const doctoremail  = localStorage.getItem("Demail");
   const PatientEmail  = localStorage.getItem("Patientemail")
+  const DoctorPass = localStorage.getItem("DoctorPassword")
+  const DoctorName= localStorage.getItem("DoctorName")
   const email = PatientEmail.slice(1,-1)
-  
+  const [Pmodal, setPmodal] = useState(false);
+
   const Update1 = async(e) => {
   const status = 1;
   console.log("HEre")
@@ -43,9 +47,36 @@ const Update2 = async(e) => {
   
  asyncCall()
 }, []);
+
+function Logout (){
+  window.location.href='/'
+}
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"><div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Doctor</div>
+                <div className="AdminInfo">UserName : DoctorName</div>
+                <div className="AdminInfo">Email : {doctoremail}</div>
+                <div className="AdminInfo">Password : DoctorPassword</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">

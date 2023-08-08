@@ -20,6 +20,11 @@ import { message } from "antd";
 import logo from "../../Assests/pending-icon.png"
 
 function PatientAppointment() {
+  function Logout (){
+    window.location.href='/'
+  }
+  const [Pmodal, setPmodal] = useState(false);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [name, setname] = useState();
   const [age, setage] = useState();
@@ -37,7 +42,9 @@ function PatientAppointment() {
 
   const Femail = PatientEmail.slice(1, -1);
   console.log(Femail)
-
+  const patientemail = localStorage.getItem("Patientemail")
+  const PatientPassword = localStorage.getItem("PatientPassword")
+  const Patientname = localStorage.getItem("Patientname")
 
   const SendAppointment = async (e) => {
     e.preventDefault();
@@ -85,7 +92,30 @@ function PatientAppointment() {
     }
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"> <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+              <div className="AdminInfo">Account Type : Patient</div>
+                <div className="AdminInfo">UserName : Patient Name</div>
+                <div className="AdminInfo">Email :{patientemail}</div>
+                <div className="AdminInfo">Password : PatientPassword</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">

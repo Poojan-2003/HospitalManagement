@@ -1,12 +1,42 @@
-import React from "react";
-
+import React,{useState} from "react";
+import { Modal, ModalHeader } from "reactstrap";
 import { Dashboard } from "./Dashboard";
 import "../Dashboard/AdminDashboard.css";
 
 function AdminDashboard() {
+  const [modalOpen, setModalOpen] = useState(false);
+  function Logout (){
+    window.location.href='/'
+  }
   return (
-    <div>
-      <div className="MainNavbar"></div>
+   <div>
+      <div className="MainNavbar">
+        <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={modalOpen}
+              toggle={() => setModalOpen(!modalOpen)}
+            >
+              <ModalHeader toggle={() => setModalOpen(!modalOpen)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setModalOpen(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div>
+        
+        </div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">
@@ -73,6 +103,8 @@ function AdminDashboard() {
         </div>
       </div>
     </div>
+         
+   
   );
 }
 

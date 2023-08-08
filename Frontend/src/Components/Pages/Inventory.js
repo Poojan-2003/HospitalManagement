@@ -33,7 +33,7 @@ function Inventory() {
   const [AllMedicine, setAllMedicine] = useState([]);
   const [detailshow , setdetailshow] = useState([])
   const [open, setOpen] = React.useState(false);
-
+  const [Pmodal , setPmodal] = useState(false)
   const AddMedicine = async(e) =>{
     e.preventDefault();
     await axios.post("http://localhost:1337/AddMedicineData",{price,quantity,mfgdate,expirydate,category,description,name})
@@ -73,10 +73,35 @@ function Inventory() {
     setdetailshow(shownstate)
   }
   }
-
+  function Logout (){
+    window.location.href='/'
+  }
   return (
     <div>
-      <div className='PMainNavbar'></div>
+      <div className='PMainNavbar'><div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">

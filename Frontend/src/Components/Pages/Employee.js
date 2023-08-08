@@ -1,7 +1,12 @@
 import React from 'react'
 import { Dashboard } from "../Dashboard/Dashboard";
+import { Modal, ModalHeader } from "reactstrap";
 
 function Employee() {
+
+  function Logout (){
+    window.location.href='/'
+  }
   return (
     <div>
     <div className='navbar'></div>

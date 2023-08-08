@@ -150,3 +150,42 @@
     margin-top: 5%;
     margin-left: 5%;
 }
+
+.Sliding{
+    margin-left: 350px;
+    margin-top: 15px;
+    width: 900px;
+
+    /* border: 1px solid black; */
+}
+.MCol{
+    color: white;
+    font-size: 28px;
+    font-weight: bolde;
+}
+#ProfilePic{
+    position: fixed;
+    color: white;
+    font-size: 35px;
+    margin-top: -50px;
+    margin-left: 1450px;
+}
+#ProfilePic:hover{
+    cursor: pointer;
+    transform: scale(0.8);
+}
+.AdminInfo{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.LogOut{
+    width: 150px;
+    height: 50px;
+    margin-top: 4%;
+    margin-left: 40%;
+    background-color: #3366ff;
+    color: white;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 50px;
+}

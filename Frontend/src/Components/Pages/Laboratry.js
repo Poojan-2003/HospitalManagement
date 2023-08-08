@@ -5,10 +5,13 @@ import "../Dashboard/AdminDashboard.css";
 import "./Laboratry.css"
 import { TextField } from "@mui/material";
 import dayjs from "dayjs";
+import { Modal, ModalHeader } from "reactstrap";
 
 function Laboratry() {
   const [Query, setQuery] = useState("");
   const [LeaveData , setLeaveData] = useState([])
+  const [modalLOpen, setModalLOpen] = useState(false);
+
   useEffect(()=> {
          
     //  const response =  
@@ -44,9 +47,37 @@ const Update2 = async(email) => {
   }).catch(err => console.log(err))
   
   }
+
+
+  function Logout (){
+    window.location.href='/'
+  }
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"> <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={modalLOpen}
+              toggle={() => setModalLOpen(!modalLOpen)}
+            >
+              <ModalHeader toggle={() => setModalLOpen(!modalLOpen)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setModalLOpen(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">

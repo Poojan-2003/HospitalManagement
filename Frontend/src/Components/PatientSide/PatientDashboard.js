@@ -6,8 +6,18 @@ import { Patientdata } from './Patientdata';
 import "./PatientDashboard.css"
 import image from "../../Assests/OQ6UTW0.jpg"
 import {Link} from "react-router-dom"
+import { Modal, ModalHeader } from "reactstrap";
+
 function PatientDashboard() {
   // eslint-disable-next-line
+  const [Pmodal, setPmodal] = useState(false);
+  function Logout (){
+    window.location.href='/'
+  }
+  const PatientPassword = localStorage.getItem("PatientPassword")
+  const Patientname = localStorage.getItem("Patientname")
+  const patientemail = localStorage.getItem("Patientemail")
+  const Pemail = patientemail.slice(1,-1)
 const [AllDoctor,setAllDoctor] = useState([])
   useEffect(()=> {
          
@@ -27,7 +37,30 @@ const [AllDoctor,setAllDoctor] = useState([])
 }, []);
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"> <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+              <div className="AdminInfo">Account Type : Patient</div>
+                <div className="AdminInfo">UserName : Patient Name</div>
+                <div className="AdminInfo">Email :{Pemail}</div>
+                <div className="AdminInfo">Password : PatientPassword</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">
@@ -60,19 +93,23 @@ const [AllDoctor,setAllDoctor] = useState([])
 
 
 
-          <div className='MainDiv'>
+          <div className='PMainDiv'>
           {AllDoctor.map((data, i) => {
               return (
+                
                 <div className='MainOutDiv'>
 
               <div className='Dimg'><img src={image} className='PDimg'></img></div>
               <div className='PRightData'>
-                <div className='Dname'>Name : {data.name}</div>
-                <div className='Dspeciality'>Speciality : {data.speciality}</div>
-                <div className='DFee'>Consultancy Fees : $500/hr</div>
-                <div><Link to={`/BookAppointment`}><button className='PBtn' onClick={()=>{localStorage.setItem("Dname",data.name); localStorage.setItem("Demail",data.email)}}>Book Now !</button></Link></div>
+                <div className='Dname'><b>Name</b> : {data.name}</div>
+                <div className='Dspeciality'><b>Speciality</b> : {data.speciality}</div>
+                <div className='DFee'><b>Consultancy Fees</b> : $500/hr</div>
+                <div><Link to={`/BookAppointment`}><button className='PPBtn' onClick={()=>{localStorage.setItem("Dname",data.name); localStorage.setItem("Demail",data.email)}}>Book Now !</button></Link></div>
               </div>
             </div>
+
+
+
               );
             })}
             

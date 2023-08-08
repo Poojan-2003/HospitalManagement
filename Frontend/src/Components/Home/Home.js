@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Home.css"
 import { Link } from 'react-router-dom'
+import HM from "../../Assests/hm1.png"
 function Home() {
   return (
     <div className='home'>
@@ -14,6 +15,8 @@ function Home() {
           <div className='exe'>A Reputation in </div>
           <div >excellence</div>
         </div> */}
+
+        {/* <div><img className="HM"src={HM} alt='HM' /></div> */}
         <div className='mid'>
           <div className='text1'>We Are Here For Your Care</div>
           <div className='text2'>We Are Best The Doctors</div>

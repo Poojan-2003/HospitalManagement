@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { Modal, ModalHeader } from "reactstrap";
 import { DoctorDashboard } from "../DoctorDashboard/DoctorDashboard";
 import "../Dashboard/AdminDashboard.css";
 import "../DoctorDashboard/MainDoctorDashboard.css";
@@ -8,7 +8,11 @@ import Switch from "@mui/material/Switch";
 import axios from "axios"
 function MainDoctorDashboard() {
   const [checked, setChecked] = React.useState(false);
-  
+  function Logout (){
+    window.location.href='/'
+  }
+  const [Pmodal, setPmodal] = useState(false);
+
   const handleChange = (event) => {
     
     setChecked(!checked);
@@ -45,7 +49,30 @@ function MainDoctorDashboard() {
   }
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"><div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+              isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">

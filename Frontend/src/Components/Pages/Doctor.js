@@ -21,6 +21,7 @@ import { green } from "@mui/material/colors";
 
 function Doctor() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [Pmodal, setPmodal] = useState(false);
   const [name, setname] = useState();
   const [age, setage] = useState();
   const [address, setaddress] = useState();
@@ -46,6 +47,15 @@ function Doctor() {
     }
 
   }
+
+
+
+  function Logout (){
+    window.location.href='/'
+  }
+
+
+
   const AddDoctor = async (e) => {
     e.preventDefault();
     await axios
@@ -137,7 +147,30 @@ function Doctor() {
 
   return (
     <div>
-      <div className="MainNavbar"></div>
+      <div className="MainNavbar"><div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <div>
+          
+          <Modal
+              size="lg"
+          isOpen={Pmodal}
+              toggle={() => setPmodal(!Pmodal)}
+            >
+              <ModalHeader toggle={() => setPmodal(!Pmodal)}>
+                Profile Page
+              </ModalHeader>
+              <div>
+                <div className="AdminInfo">Account Type : Admin</div>
+                <div className="AdminInfo">UserName : Admin</div>
+                <div className="AdminInfo">Email : Admin@gmail.com</div>
+                <div className="AdminInfo">Password : Admin</div>
+                <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
+              </div>
+            </Modal>
+            
+            <i  onClick={() => {
+                setPmodal(true);
+              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
       <div className="MainBody">
         <div className="MainSidebar">
           <div className="SideBarData">
@@ -281,7 +314,7 @@ function Doctor() {
                   <div className="ITrow">
                     <div className="Fname">
                     <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
-                      <RadioGroup
+                        <RadioGroup
                         row
                         aria-labelledby="demo-row-radio-buttons-group-label"
                         name="row-radio-buttons-group"

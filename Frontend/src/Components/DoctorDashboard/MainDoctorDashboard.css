@@ -110,3 +110,22 @@
     cursor: pointer;
     transform: scale(0.9);
 }
+
+#Profile{
+    display: flex;
+    color: white;
+    margin-top: -20px;
+    float: right;
+    margin-right: 50px;
+    font-size: 35px;
+}
+#Profile:hover{
+    transform: scale(0.9);
+    cursor: pointer;
+}
+.Mar{
+    color: white;
+    
+    /* margin-top: 25px; */
+    font-size: larger;
+}

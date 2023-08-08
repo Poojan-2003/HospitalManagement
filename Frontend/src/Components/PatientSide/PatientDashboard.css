@@ -1,9 +1,9 @@
-.MainDiv{
+.PMainDiv{
    
     max-width: 100vw;
 }
 .MainOutDiv{
-    border-radius: 1%;
+    border-radius: 40px;
     display: flex;
     margin: 40px 20px 20px 50px;
     width: 500px;
@@ -14,7 +14,7 @@
 }
 .MainOutDiv:hover{
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
+        cursor: pointer;
 }
 .PRightData{
     margin-left: 50px;
@@ -23,7 +23,7 @@
     border-radius:100% ;
     width: 200px;
     height: 200px;
-    border: 7px solid #3366ff;
+    /* border: 7px solid #3366ff; */
 }
 .PDimg:hover{
     transform: scale(0.9);
@@ -42,7 +42,7 @@
 .DFee{
     margin-bottom:10% ;
 }
-/* .PBtn{
+.PPBtn{
     margin-top: 4%;
     border: none;
     background-color: #3366ff;
@@ -50,9 +50,9 @@
     width: 120px;
     height: 50px;
 }
-.PBtn:hover{
+.PPBtn:hover{
     transform: scale(0.8);
-} */
+}
 .PC{
     width: 295px;
 }
@@ -68,6 +68,6 @@
     font-size: smaller;
     margin-bottom: 50px;
 }
-.Admin{
+/* .Admin{
     color: #3366ff;
-}
+} */

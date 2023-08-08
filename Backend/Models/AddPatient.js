@@ -40,6 +40,7 @@ const AddPatient = new mongoose.Schema({
         height:{type:Number , required:true},
         weight:{type:Number,required:true},
         status:{type:Number,default:1},
+        birthdate:{type:Date,},
 },{collection:"AddPatientData"})
 
 const addPatientModel = mongoose.model("AddPatient",AddPatient)

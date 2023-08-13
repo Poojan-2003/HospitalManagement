@@ -72,7 +72,8 @@ function LeavePage() {
  asyncCall()
 }, []);
 
-
+const DoctorName = localStorage.getItem("Doctorname")
+const Doctoremail= localStorage.getItem("Doctoremail")
 function Greeting(props){
   const currstatus = props.currstatus
   console.log(currstatus)
@@ -99,10 +100,10 @@ function Greeting(props){
                 Profile Page
               </ModalHeader>
               <div>
-                <div className="AdminInfo">Account Type : Admin</div>
-                <div className="AdminInfo">UserName : Admin</div>
-                <div className="AdminInfo">Email : Admin@gmail.com</div>
-                <div className="AdminInfo">Password : Admin</div>
+                <div className="AdminInfo">Account Type : Doctor</div>
+                <div className="AdminInfo">UserName : {DoctorName.slice(1,-1)}</div>
+                <div className="AdminInfo">Email : {Doctoremail.slice(1,-1)}</div>
+                <div className="AdminInfo">Password : ******</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>
             </Modal>

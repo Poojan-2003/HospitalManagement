@@ -47,15 +47,17 @@ function Prescription() {
     }
     asyncCall();
   }, []);
-
+  const doctoremail = localStorage.getItem("Doctoremail")
+  const doctorname = localStorage.getItem("Doctorname")
   const SendPrescription = async(e) =>{
     e.preventDefault();
-    await axios.post("http://localhost:1337/SendPrescription",{patientname,patientemail,category,description,medicine})
+    await axios.post("http://localhost:1337/SendPrescription",{patientname,patientemail,category,description,medicine,doctorname,doctoremail})
     .then(result =>{console.log(result); message.success("Prescription Send Successfully")})
     .catch(err => console.log(err))
  
     }
-  
+    const DoctorName = localStorage.getItem("Doctorname")
+    const Doctoremail= localStorage.getItem("Doctoremail")
   return (
     <div>
       <div className="MainNavbar">
@@ -72,10 +74,10 @@ function Prescription() {
                 Profile Page
               </ModalHeader>
               <div>
-                <div className="AdminInfo">Account Type : Admin</div>
-                <div className="AdminInfo">UserName : Admin</div>
-                <div className="AdminInfo">Email : Admin@gmail.com</div>
-                <div className="AdminInfo">Password : Admin</div>
+              <div className="AdminInfo">Account Type : Doctor</div>
+                <div className="AdminInfo">UserName : {DoctorName.slice(1,-1)}</div>
+                <div className="AdminInfo">Email : {Doctoremail.slice(1,-1)}</div>
+                <div className="AdminInfo">Password : ******</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>
             </Modal>

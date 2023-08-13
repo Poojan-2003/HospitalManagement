@@ -47,6 +47,10 @@ function MainDoctorDashboard() {
       console.log(result)
     }).catch(err => console.log(err))
   }
+
+
+  const DoctorName = localStorage.getItem("Doctorname")
+const Doctoremail= localStorage.getItem("Doctoremail")
   return (
     <div>
       <div className="MainNavbar"><div className="Sliding">
@@ -62,10 +66,10 @@ function MainDoctorDashboard() {
                 Profile Page
               </ModalHeader>
               <div>
-                <div className="AdminInfo">Account Type : Admin</div>
-                <div className="AdminInfo">UserName : Admin</div>
-                <div className="AdminInfo">Email : Admin@gmail.com</div>
-                <div className="AdminInfo">Password : Admin</div>
+              <div className="AdminInfo">Account Type : Doctor</div>
+                <div className="AdminInfo">UserName : {DoctorName.slice(1,-1)}</div>
+                <div className="AdminInfo">Email : {Doctoremail.slice(1,-1)}</div>
+                <div className="AdminInfo">Password : ******</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>
             </Modal>

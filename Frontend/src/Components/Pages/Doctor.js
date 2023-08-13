@@ -18,6 +18,7 @@ import { NavLink ,useNavigate } from 'react-router-dom';
 import FormLabel from '@mui/material/FormLabel';
 import "../Pages/Doctor.css"
 import { green } from "@mui/material/colors";
+import FileBase64 from 'react-file-base64';
 
 function Doctor() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -34,7 +35,7 @@ function Doctor() {
   const [AllDoctor, setAllDoctor] = useState([]);
   const [detailshow , setdetailshow] = useState([])
   const [open, setOpen] = React.useState(false);
-
+  const [img,setImg] = useState()
   
   function Greeting(props){
     
@@ -359,7 +360,12 @@ function Doctor() {
                         required
                       />{" "}
                     </div>
-
+                    {/* Choose Image
+                    <FileBase64
+                      multiple={ false }
+                      onDone={({base64})=>setImg({
+                        img : base64
+                      })} /> */}
                     </div>
                     
 

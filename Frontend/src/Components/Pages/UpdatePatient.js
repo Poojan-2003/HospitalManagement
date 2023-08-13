@@ -1,6 +1,7 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { TextField } from "@mui/material";
-
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 function UpdatePatient() {
   const [modalOpen, setModalOpen] = useState(false);
   const [fname, setfname] = useState("");
@@ -17,6 +18,98 @@ function UpdatePatient() {
   const [height, setheight] = useState("");
   const [weight, setweight] = useState("");
   const [AllPatient, setAllPatient] = useState([]);
+
+  const id = useParams()
+  useEffect(()=> {
+         
+    //  const response =  
+    //                    fetch('http://localhost:1337/AllPatient');
+    //  const alldata =  response.json();
+    //  setAllPatient(alldata.data.AllPatientData);
+    async function asyncCall() {
+      console.log(id)
+   await axios.get("http://localhost:1337/AllPatientData/"+id)
+   
+    .then(result => {setAllPatient(result.data.data.AllPatientData); console.log(result.data.data.AllPatientData)})
+    .catch(err => console.log(err))
+    }
+    
+  
+ asyncCall()
+}, []);
+
+
+  
+  // componentDidMount = () => {
+  // this.getEmployeeById();
+  // }
+  
+  // // To get employee based on ID
+  // getEmployeeById() {
+  // axios.get('http://localhost:4000/employees/editEmployee/' + this.props.match.params.id)
+  // .then((response) => {
+  // this.setState({
+  // fname: response.data.fname,
+  // lname: response.data.lname,
+  // email: response.data.email,
+  // mobile: response.data.mobile
+  // });
+  // })
+  // .catch((error) => {
+  // console.log(error);
+  // })
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div>

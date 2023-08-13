@@ -12,23 +12,23 @@ function Appointment() {
   const doctoremail  = localStorage.getItem("Demail");
   const PatientEmail  = localStorage.getItem("Patientemail")
   const DoctorPass = localStorage.getItem("DoctorPassword")
-  const DoctorName= localStorage.getItem("DoctorName")
+  const DoctorName= localStorage.getItem("Doctorname")
   const email = PatientEmail.slice(1,-1)
   const [Pmodal, setPmodal] = useState(false);
 
-  const Update1 = async(e) => {
+  const Update1 = async(id) => {
   const status = 1;
-  console.log("HEre")
-  await axios.post("http://localhost:1337/UpdateAppoin",{status,email})
+  
+  await axios.post("http://localhost:1337/UpdateAppoin",{status,id})
   .then(result => {
     console.log(result)
   }).then(window.location.reload())
   .catch(err => console.log(err))
 }
-const Update2 = async(e) => {
+const Update2 = async(id) => {
   const status = 2
   console.log("HEreasd")
-  await axios.post("http://localhost:1337/UpdateAppoin",{status,email})
+  await axios.post("http://localhost:1337/UpdateAppoin",{status,id})
   .then(result => {
     console.log(result)
   }).then(window.location.reload())
@@ -66,10 +66,10 @@ function Logout (){
                 Profile Page
               </ModalHeader>
               <div>
-                <div className="AdminInfo">Account Type : Doctor</div>
-                <div className="AdminInfo">UserName : DoctorName</div>
-                <div className="AdminInfo">Email : {doctoremail}</div>
-                <div className="AdminInfo">Password : DoctorPassword</div>
+                <div className="AdminInfo"><b>Account Type</b> : Doctor</div>
+                <div className="AdminInfo"><b>UserName</b> :{DoctorName.slice(1,-1)}</div>
+                <div className="AdminInfo"><b>Email</b> : {doctoremail}</div>
+                <div className="AdminInfo"><b>Password</b> : DoctorPassword</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>
             </Modal>
@@ -128,7 +128,6 @@ function Logout (){
                   {Appointment?.filter(Appointment => Appointment.doctoremail === doctoremail).filter(Appointment => Appointment.status === 0).map((data, i) => (
                     <React.Fragment key={data._id}>
                     <tr key={i}>
-                     
                       <td>{++i}</td>
                       <td>{data.name}</td>
                       <td>{data.age}</td>
@@ -136,7 +135,7 @@ function Logout (){
                       <td>{dayjs(data.date).format('DD/MM/YYYY')}</td>
                       <td>{dayjs(data.time).format('HH:MM')}</td>
                       <td>{data.appreason}</td>
-                      <td><button className="DAPP" onClick={ () => Update1()} >Approve</button> <button className="DReject" onClick={ () => Update2()}>Reject</button></td>
+                      <td><button className="DAPP" onClick={ () => Update1(data._id)} >Approve</button> <button className="DReject" onClick={ () => Update2(data._id)}>Reject</button></td>
                     </tr>
                     
                       </React.Fragment>

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 import {message} from "antd"
 import {useNavigate} from "react-router-dom"
-
 const PatientLogin = () => {
 	const [email,setemail] = useState('')
 	const [password , setpassword] = useState('')
@@ -29,9 +28,11 @@ const PatientLogin = () => {
 		})
 		const data = await response.json()
 		localStorage.setItem("Patientemail",JSON.stringify(data.email))
+		localStorage.setItem("Patientname",JSON.stringify(data.name))
+		localStorage.setItem("PatientID",JSON.stringify(data._id))
 		console.log(data)
 		if(data.email){
-			message.success("SignIn Successfully")
+			message.success("Login Successfully")
 			navigate("/PatientDashboard") 
 			// window.location.href = '/MainDoctorDashboard'
 			
@@ -42,6 +43,7 @@ const PatientLogin = () => {
 	  }
 
 	return (
+		<div className="BackImg">
 		<div className={styles.login_container}>
 			<div className={styles.login_form_container}>
 				<div className={styles.left}>
@@ -80,6 +82,7 @@ const PatientLogin = () => {
 					</Link>
 				</div>
 			</div>
+		</div>
 		</div>
 	);
 };

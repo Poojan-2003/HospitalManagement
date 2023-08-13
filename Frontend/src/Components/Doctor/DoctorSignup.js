@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
 // import jwt from 'jasonwebtoken'
+import { useNavigate  } from "react-router-dom";
+
 import {message} from "antd"
 const DoctorSignup = () => {
 
@@ -13,7 +15,7 @@ const DoctorSignup = () => {
   const [password, setpassword] = useState();
 
 //   const [error, setError] = useState("");
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   async function registerDoctor(event){
 	event.preventDefault()
@@ -34,8 +36,8 @@ const DoctorSignup = () => {
   if(data.error !== undefined)
     alert(data.error)
 	if(data.status === 'ok'){
+    navigate('/DoctorLogin')
     message.success("SignUp Successfully");
-		window.location.href='/DoctorLogin'
 	}
   }
 

@@ -270,8 +270,8 @@ td {
   padding-left: 7px;
   width: 60px;
   height: 25px;
-  background-color: #07bc0c;
-  border: 1px solid #07bc0c;
+  background-color: #39FF14;
+  border: 1px solid #39FF14;
   border-radius: 10px;
 }
 
@@ -283,4 +283,10 @@ td {
   margin-top: -55px;
   margin-left: 900px;
 
+}
+.AddData{
+  margin-left: 20px;
+}
+.M{
+  margin-bottom: 10px;
 }

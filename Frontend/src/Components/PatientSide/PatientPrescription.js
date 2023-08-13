@@ -16,7 +16,7 @@ function PatientPrescription() {
   }
   const [PrescriptionData ,setPrescriptionData] = useState([])
   const PatientPassword = localStorage.getItem("PatientPassword")
-    const Patientname = localStorage.getItem("PatientName")
+    const Patientname = localStorage.getItem("Patientname")
    const patientemail = localStorage.getItem("Patientemail")
    console.log(patientemail)
    const finalemail = patientemail.slice(1, -1);
@@ -56,8 +56,8 @@ function PatientPrescription() {
               </ModalHeader>
               <div>
                 <div className="AdminInfo">Account Type : Patient</div>
-                <div className="AdminInfo">UserName : Patient Name</div>
-                <div className="AdminInfo">Email :{finalemail}</div>
+                <div className="AdminInfo">UserName : {Patientname.slice(1,-1)}</div>
+                <div className="AdminInfo">Email :{patientemail.slice(1,-1)}</div>
                 <div className="AdminInfo">Password : PatientPassword</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>
@@ -109,6 +109,8 @@ function PatientPrescription() {
                     <th>Category</th>
                     <th>Medicine</th>
                     <th>Description</th>
+                    <th>Doctor Name</th>
+                    <th>Doctor Email</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -123,6 +125,8 @@ function PatientPrescription() {
                       <td>{data.category}</td>
                       <td>{data.medicine},</td>
                       <td>{data.description}</td>
+                      <td>{data.doctorname.slice(1,-1)}</td>
+                      <td>{data.doctoremail.slice(1,-1)}</td>
                       
                       
                     </tr>

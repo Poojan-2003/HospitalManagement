@@ -106,8 +106,8 @@ function PatientAppointment() {
               </ModalHeader>
               <div>
               <div className="AdminInfo">Account Type : Patient</div>
-                <div className="AdminInfo">UserName : Patient Name</div>
-                <div className="AdminInfo">Email :{patientemail}</div>
+                <div className="AdminInfo">UserName : {Patientname.slice(1,-1)}</div>
+                <div className="AdminInfo">Email :{patientemail.slice(1,-1)}</div>
                 <div className="AdminInfo">Password : PatientPassword</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>

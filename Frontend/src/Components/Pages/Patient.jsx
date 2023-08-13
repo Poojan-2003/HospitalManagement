@@ -454,7 +454,7 @@ function Patient() {
                     <th>Name</th>
                     <th>Age</th>
                     <th>Contact</th>
-                    <th>Status</th>
+                    <th>Current Status</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -484,12 +484,28 @@ function Patient() {
                       
                     </tr>
                     {detailshow.includes(data.fname) && (
-                          <tr className='Additional-info'>
-                            {/* <div className='CData'> */}
-                          <td><b>Name</b> : {data.fname}</td>
+                        //   <tr className='Additional-info'>
+                        //     {/* <div className='CData'> */}
+                        //   <td><b>Name</b> : {data.fname}</td>
                          
-                            {/* </div> */}
-                        </tr>
+                        //     {/* </div> */}
+                        // </tr>
+
+
+                        <div className="AddData">
+                          <div className="M"><b>First Name  -  </b>  {data.fname}</div>
+                          <div className="M"><b>Middle Name  -  </b>  {data.mname}</div>
+                          <div className="M"><b>Last Name  -  </b>  {data.lname}</div>
+                          <div className="M"><b>Email  -  </b>  {data.email}</div>
+                          <div className="M"><b>Contact No  -  :</b>  {data.mobile}</div>
+                          <div className="M"><b>Gender  -  </b>  {data.gender}</div>
+                          <div className="M"><b>Birthdate  -  </b>  {data.birthdate}</div>
+                          <div className="M"><b>Blood Group  -  </b>  {data.bloodgroup}</div>
+                          <div className="M"><b>Marratrial Status  -  </b>  {data.marriedstatus}</div>
+                          <div className="M"><b>Address  -  </b>  {data.address}</div>
+
+</div>
+                        
                       )}
                       </React.Fragment>
                   ))}

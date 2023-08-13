@@ -63,11 +63,11 @@ function AdminDashboard() {
 
         <div className="MainData">
           <div className="NavBarForMainData">
-            <i class="fa-sharp fa-solid fa-hospital" id="NavBarIcon"></i>
+            <i class="fa-sharp fa-solid fa-house" id="NavBarIcon"></i>
             <div className="NavDashboard">Dashboard</div>
             <div className="NavDashfeature">Dashboard Features</div>
           </div>
-          <div className="MainBox">
+          {/* <div className="MainBox">
             <div className="SubBox">
               <div className="LeftSubbox">
                 <i class="fa-sharp fa-solid fa-tablets"></i>
@@ -99,6 +99,44 @@ function AdminDashboard() {
               </div>
               <div className="NumberInSubbox">3</div>
             </div>
+          </div> */}
+
+          <div className="Row1">
+            <div className="SB1">
+              <div className="Icon"><i class="fa-sharp fa-solid fa-tablets" id="MIcon"></i></div>
+              <div className="RData">
+                  <div className="count">5</div>
+                  <div className="Value">Total Medicine</div>
+              </div>
+            </div>
+            <div className="SB2">
+              <div className="Icon"><i class="fa-solid fa-user-doctor" id="MIcon2"></i></div>
+              <div className="RData">
+                  <div className="count">5</div>
+                  <div className="Value">Total Doctors</div>
+              </div>
+            </div>
+
+
+          </div>
+
+          <div className="Row1">
+            <div className="SB1">
+              <div className="Icon"><i class="fa-solid fa-person" id="MIcon3"></i></div>
+              <div className="RData">
+                  <div className="count">5</div>
+                  <div className="Value">Total Employee</div>
+              </div>
+            </div>
+            <div className="SB2">
+              <div className="Icon"><i class="fa-solid fa-hospital-user" id="MIcon4"></i></div>
+              <div className="RData">
+                  <div className="count">5</div>
+                  <div className="Value">Total Patients</div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>

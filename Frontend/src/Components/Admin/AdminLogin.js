@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 import styles from "./styles.module.css";
 import { message } from "antd";
 import "./Admin.css"
@@ -10,7 +10,7 @@ const AdminLogin = () => {
 	const [isLoggedin, setIsLoggedin] = useState(false);
 	// const [data, setData] = useState({ email: "", password: "" });
 	// const [error, setError] = useState("");
-
+	const navigate = useNavigate();
 	
 
 	async function loginDoctor(event){
@@ -29,9 +29,10 @@ const AdminLogin = () => {
 		const data = await response.json()
 		
 		if(data.user){
-			setIsLoggedin(true)
+			
+			// window.location.href = '/AdminDashboard'
+			navigate("/AdminDashboard")
 			message.success("Login Successfull")
-			window.location.href = '/AdminDashboard'
 		}else{
 			message.error("Please Check Your Username and Password")
 		}

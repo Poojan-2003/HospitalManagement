@@ -18,6 +18,7 @@ const AdminCredentialDetails = require('./Models/AddAdmin')
 const LeaveSchema = require('./Models/AddLeave')
 const AddPatientCredential = require('./Models/AddPatientCredential')
 const AppointmentSchema = require('./Models/AddAppointment') 
+const AddEmployeeModel = require('./Models/AddEmployee')
 const app = express()
 const cookieParser = require('cookie-parser')
 app.use(cookieParser());
@@ -55,7 +56,7 @@ app.post('/api/login' , async(req , res) => {
             },
             'secret123'
             )
-            return res.json({status:'ok',user:token,email:user.email,name:user.name})
+            return res.json({status:'ok',user:token,email:user.email,name:user.name,_id:user._id})
         }else{
             return res.json({status:'error',user:false})
         }
@@ -102,6 +103,33 @@ app.get('/AllPatient', async (req,res) => {
         })
     }
 })
+
+
+app.get('/AllPatientData/:id', async (req,res) => {
+    
+    let id = req.params.id;
+    // const AllPatientData = await addPatientModel.findById({})
+    // try{
+    //     res.status(200).json({
+    //         status : 'ok',
+    //         data : {
+    //             AllPatientData
+    //         }
+    //     })
+    // }catch(err){
+    //     res.status(500).json({
+    //         status: 'err',
+    //         message : err
+    //     })
+    // }
+
+        addPatientModel.findById(id, function (err, employee) {
+        res.json(employee);})
+
+
+        
+})
+
 
 
 
@@ -409,7 +437,7 @@ app.post('/CheckCredlogin' , async(req , res) => {
         },
         'secret123'
         )
-        return res.json({status:'ok',email:user.email,id:user._id})
+        return res.json({status:'ok',email:user.email,_id:user._id,name:user.name})
     }else{
         return res.json({status:'error',user:false})
     }
@@ -516,9 +544,9 @@ app.get('/AppointmentData' , async(req,res)=>{
 
 app.post('/UpdateAppoin' , async(req,res) => {
     
-    const user = AppointmentSchema.findOne({email:req.body.email})
+    const user = AppointmentSchema.findOne({_id:req.body.id})
     if(user){
-    AppointmentSchema.updateOne({email:req.body.email},{$set:{status:req.body.status}})
+    AppointmentSchema.updateOne({_id:req.body.id},{$set:{status:req.body.status}})
     .then (result => res.send(result))
     .catch(err => console.log(err))
     }else{
@@ -550,6 +578,55 @@ app.post('/UpdateLeave' , async(req,res) => {
     .then (result => res.send(result))
     .catch(err => console.log(err))
    
+})
+
+app.post('/AddEmployee' , async(req , res) => {
+    
+    // try{
+    //     const user = await PresSchema.create({
+    //         name:req.body.patientname,
+    //         email:req.body.patientemail,
+    //         category:req.body.category,
+    //         medicine:req.body.medicine,
+    //         description:req.body.description, 
+    //     })
+    //     res.json({status:'ok'})
+    // }catch(err){
+    //     res.json({status:'error',error:'Email Already Exists'})
+    // }
+    
+   
+    
+        
+        
+            const EmployeeData = new AddEmployeeModel(req.body)
+            EmployeeData.save()
+             res.status(201).json({
+                status: 'Success',
+                data : {
+                    EmployeeData
+                }
+            })
+    
+})
+
+
+app.get('/AllEmployee', async (req,res) => {
+    
+    const AllEmployeeData = await AddEmployeeModel.find({})
+    try{
+        res.status(200).json({
+            status : 'ok',
+            data : {
+                AllEmployeeData
+            }
+        })
+    }catch(err){
+        res.status(500).json({
+            status: 'err',
+            message : err
+        })
+    }
 })
 
 

@@ -2,6 +2,7 @@
   font-family: 'Josefin Sans', sans-serif;
 }
 .PMainNavbar{
+  display: flex;
   width: 100vw;
   position: absolute;
   z-index: 15;
@@ -289,4 +290,9 @@ td {
 }
 .M{
   margin-bottom: 10px;
+}
+.PHM{
+  width: 90px;
+  margin-top: -15px;
+margin-left: 80px;
 }

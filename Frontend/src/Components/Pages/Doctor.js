@@ -19,6 +19,8 @@ import FormLabel from '@mui/material/FormLabel';
 import "../Pages/Doctor.css"
 import { green } from "@mui/material/colors";
 import FileBase64 from 'react-file-base64';
+import Logo from "../../Assests/F3.png"
+
 
 function Doctor() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -127,8 +129,8 @@ function Doctor() {
 
   const DeleteDoctor = (id) => {
     axios.delete('http://localhost:1337/DeleteDoctor/'+id)
-    .then(window.location.reload())
     .then(alert("Doctor Data Deleted Successfully"))
+    .then(window.location.reload())
     }
   
     const toggleShown = username => {
@@ -148,7 +150,9 @@ function Doctor() {
 
   return (
     <div>
-      <div className="MainNavbar"><div className="Sliding">
+      <div className="MainNavbar">
+      <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
+        <div className="Sliding">
         <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
         <div>
           
@@ -445,7 +449,7 @@ function Doctor() {
                       
                       <td className="Paction">
                         <div>
-                          <NavLink to={`UpdatePatient/${data._id}`}>
+                          <NavLink to={`UpdateDoctor/${data._id}`}>
                             <i class="fa-solid fa-pen"></i>
                           </NavLink>
                         </div>

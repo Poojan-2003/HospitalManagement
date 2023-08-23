@@ -2,6 +2,7 @@
     font-family: 'Josefin Sans', sans-serif;
 }
 .MainNavbar{
+    display: flex;
     width: 100vw;
     position: absolute;
     z-index: 15;
@@ -159,16 +160,18 @@
     /* border: 1px solid black; */
 }
 .MCol{
-    color: white;
+    color: #e3f2fd;
     font-size: 28px;
-    font-weight: bolde;
+    /* font-weight: bold; */
+    
 }
 #ProfilePic{
+    z-index: 200;
     position: fixed;
-    color: white;
-    font-size: 35px;
-    margin-top: -50px;
-    margin-left: 1450px;
+    color: #e3f2fd;
+    font-size:35px;
+    margin-top: 12px;
+    margin-left:  40px;
 }
 #ProfilePic:hover{
     cursor: pointer;

@@ -117,7 +117,7 @@
     margin-top: -20px;
     float: right;
     margin-right: 50px;
-    font-size: 35px;
+    font-size: 500px;
 }
 #Profile:hover{
     transform: scale(0.9);
@@ -128,4 +128,11 @@
     
     /* margin-top: 25px; */
     font-size: larger;
+}
+
+.HM{
+    color: white;
+    width: 98px;
+    height: 95px;
+    margin-top: -9px; 
 }

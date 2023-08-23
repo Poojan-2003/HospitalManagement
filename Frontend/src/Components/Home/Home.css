@@ -72,7 +72,7 @@
 
         }
 .mid{
-        margin-top: 28%;
+        margin-top: 23%;
         margin-left: 2%;
 }
 .exe{
@@ -110,8 +110,12 @@
 .Admin:hover{
         color: #33363D;
 }
-.HM{
-        width: 371px;
-        height: 340px;
-        margin-top: -30px;
+.HM1{
+         /* width: 350px;
+        height: 350px;  */
+        /* margin-top: -10px; */
+        margin-top: -110px;
+        margin-left: 10px;
+        width: 200px;
+        height: 200px;
 }

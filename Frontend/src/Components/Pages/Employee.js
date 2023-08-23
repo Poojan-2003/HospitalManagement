@@ -21,12 +21,14 @@ import dayjs from "dayjs";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';                   
 import { NavLink ,useNavigate } from 'react-router-dom';
+import "./Employee.css"
+import Logo from "../../Assests/F3.png"
 
 function Employee() {
   const DeleteEmployee = (id) => {
     axios.delete('http://localhost:1337/DeleteEmployee/'+id)
-    .then(window.location.reload())
     .then(alert("Employee Data Deleted Successfully"))
+    .then(window.location.reload())
     }
   const toggleShown = username => {
     const shownstate = detailshow.slice();
@@ -104,6 +106,7 @@ function Employee() {
   return (
    <div>
       <div className="MainNavbar">
+      <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
         <div className="Sliding">
         <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
         <div>
@@ -161,9 +164,9 @@ function Employee() {
             <div className="NavDashfeature">Employee' Features</div>
           </div>
 
-          <div>
+          <div className="Emp">
           <div className="PSearch"><TextField  id="outlined-basic" label="Search Name" variant="outlined" onChange={(e) => setQuery(e.target.value)}/></div>
-          <div>
+          <div className="AddEmp">
           <Modal
               size="lg"
               isOpen={modalOpen}
@@ -324,7 +327,7 @@ function Employee() {
               </div>
             </Modal>
             <button
-              className="AddPBtn"
+              className="AddPBtn2"
               onClick={() => {
                 setModalOpen(true);
               }}
@@ -337,6 +340,15 @@ function Employee() {
 
           </div>
           
+          
+
+
+
+
+
+
+
+          </div>
           <table className="Ptable">
               <thead className="Thead">
                 <tr>
@@ -381,7 +393,7 @@ function Employee() {
                       
                       <td className="Paction">
                         <div>
-                          <NavLink to={`UpdatePatient/${data._id}`}>
+                          <NavLink to={`UpdateEmployee/${data._id}`}>
                             <i class="fa-solid fa-pen"></i>
                           </NavLink>
                         </div>
@@ -429,14 +441,6 @@ function Employee() {
                 ))}
               </tbody>
             </table>
-
-
-
-
-
-
-
-          </div>
         </div>
       </div>
     </div>

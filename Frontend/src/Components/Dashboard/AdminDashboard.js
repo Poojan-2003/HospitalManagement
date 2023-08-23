@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import { Modal, ModalHeader } from "reactstrap";
 import { Dashboard } from "./Dashboard";
 import "../Dashboard/AdminDashboard.css";
+import Logo from "../../Assests/F3.png"
 
 function AdminDashboard() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -10,7 +11,7 @@ function AdminDashboard() {
   }
   return (
    <div>
-      <div className="MainNavbar">
+      <div className="MainNavbar"> <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
         <div className="Sliding">
         <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
         <div>

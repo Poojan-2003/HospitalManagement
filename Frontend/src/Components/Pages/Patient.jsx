@@ -14,6 +14,7 @@ import {message} from "antd"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import Logo from "../../Assests/F3.png"
 function Patient() {
   
   const [open, setOpen] = React.useState(false);
@@ -126,6 +127,7 @@ function Patient() {
     <div>
       <div className="PMainNavbar">
         
+         <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
         <div className="Sliding">
         <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
         <div>

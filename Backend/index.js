@@ -105,30 +105,30 @@ app.get('/AllPatient', async (req,res) => {
 })
 
 
-app.get('/AllPatientData/:id', async (req,res) => {
+// app.get('/AllPatientData/:id', async (req,res) => {
     
-    let id = req.params.id;
-    // const AllPatientData = await addPatientModel.findById({})
-    // try{
-    //     res.status(200).json({
-    //         status : 'ok',
-    //         data : {
-    //             AllPatientData
-    //         }
-    //     })
-    // }catch(err){
-    //     res.status(500).json({
-    //         status: 'err',
-    //         message : err
-    //     })
-    // }
+//     let id = req.params.id;
+//     // const AllPatientData = await addPatientModel.findById({})
+//     // try{
+//     //     res.status(200).json({
+//     //         status : 'ok',
+//     //         data : {
+//     //             AllPatientData
+//     //         }
+//     //     })
+//     // }catch(err){
+//     //     res.status(500).json({
+//     //         status: 'err',
+//     //         message : err
+//     //     })
+//     // }
 
-        addPatientModel.findById(id, function (err, employee) {
-        res.json(employee);})
+//         addPatientModel.findById(id, function (err, employee) {
+//         res.json(employee);})
 
 
         
-})
+// })
 
 
 
@@ -175,6 +175,23 @@ app.post('/addPatient', async(req,res) => {
 
 app.delete('/DeletePatient/:id', async(req,res) => {
     await addPatientModel.findByIdAndDelete(req.params.id)
+    
+    try{
+       res.status(204).json({
+          status : 'ok',
+          data : "Patient Deleted Successfully"
+      })
+    }catch(err){
+         res.status(500).json({
+            status: 'error',
+            message : err
+        })
+    }
+})
+
+
+app.delete('/DeleteEmployee/:id', async(req,res) => {
+    await AddEmployeeModel.findByIdAndDelete(req.params.id)
     
     try{
        res.status(204).json({
@@ -628,6 +645,93 @@ app.get('/AllEmployee', async (req,res) => {
         })
     }
 })
+
+app.get("/GetInfo/:id",async(req,res)=>{
+    try {
+        console.log(req.params);
+        const {id} = req.params;
+
+        const userindividual = await addPatientModel.findById({_id:id});
+        console.log(userindividual);
+        res.status(201).json(userindividual)
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+app.get("/GetInfoDoctor/:id",async(req,res)=>{
+    try {
+        console.log(req.params);
+        const {id} = req.params;
+
+        const userindividual = await AddDoctorModel.findById({_id:id});
+        console.log(userindividual);
+        res.status(201).json(userindividual)
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+app.get("/GetInfoEmployee/:id",async(req,res)=>{
+    try {
+        console.log(req.params);
+        const {id} = req.params;
+
+        const userindividual = await AddEmployeeModel.findById({_id:id});
+        console.log(userindividual);
+        res.status(201).json(userindividual)
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
+app.patch("/updateuser/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+
+        const updateduser = await addPatientModel.findByIdAndUpdate(id,req.body,{
+            new:true
+        });
+
+        console.log(updateduser);
+        res.status(201).json(updateduser);
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+app.patch("/updateEmployee/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+
+        const updateduser = await AddEmployeeModel.findByIdAndUpdate(id,req.body,{
+            new:true
+        });
+
+        console.log(updateduser);
+        res.status(201).json(updateduser);
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+app.patch("/updateDoctor/:id",async(req,res)=>{
+    try {
+        const {id} = req.params;
+
+        const updateduser = await AddDoctorModel.findByIdAndUpdate(id,req.body,{
+            new:true
+        });
+
+        console.log(updateduser);
+        res.status(201).json(updateduser);
+
+    } catch (error) {
+        res.status(422).json(error);
+    }
+})
+
 
 
 app.listen(1337 , () => {

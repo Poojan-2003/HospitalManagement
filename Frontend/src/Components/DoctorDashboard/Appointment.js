@@ -13,7 +13,7 @@ function Appointment() {
   const PatientEmail  = localStorage.getItem("Patientemail")
   const DoctorPass = localStorage.getItem("DoctorPassword")
   const DoctorName= localStorage.getItem("Doctorname")
-  const email = PatientEmail.slice(1,-1)
+  // const email = PatientEmail.slice(1,-1)
   const [Pmodal, setPmodal] = useState(false);
 
   const Update1 = async(id) => {

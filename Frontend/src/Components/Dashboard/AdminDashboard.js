@@ -103,7 +103,7 @@ function AdminDashboard() {
           </div> */}
 
           <div className="Row1">
-            <div className="SB1">
+            <div className="SB2">
               <div className="Icon"><i class="fa-sharp fa-solid fa-tablets" id="MIcon"></i></div>
               <div className="RData">
                   <div className="count">5</div>
@@ -122,7 +122,7 @@ function AdminDashboard() {
           </div>
 
           <div className="Row1">
-            <div className="SB1">
+            <div className="SB2">
               <div className="Icon"><i class="fa-solid fa-person" id="MIcon3"></i></div>
               <div className="RData">
                   <div className="count">5</div>

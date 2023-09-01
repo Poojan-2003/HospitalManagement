@@ -5,6 +5,7 @@ import HM from "../../Assests/F3.png"
 function Home() {
   return (
     <div className='home'>
+      
         <div className='Nav'>
             <Link to={'/AdminLogin'} className='Admin'>Admin's Login</Link>
             <Link to={'/DoctorLogin'} className='DocLog'>Doctor's Login</Link>

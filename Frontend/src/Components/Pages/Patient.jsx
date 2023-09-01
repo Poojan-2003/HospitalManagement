@@ -15,6 +15,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import Logo from "../../Assests/F3.png"
+import dayjs from "dayjs";
+
 function Patient() {
   
   const [open, setOpen] = React.useState(false);
@@ -39,7 +41,7 @@ function Patient() {
             
           }
        
-          ).then(window.location.reload(false)).then( message.error("Error Occurred While Adding Patient"))
+          ).then(window.location.reload(false))
     .catch(err => console.log(err))
  
     }
@@ -501,7 +503,7 @@ function Patient() {
                           <div className="M"><b>Email  -  </b>  {data.email}</div>
                           <div className="M"><b>Contact No  -  :</b>  {data.mobile}</div>
                           <div className="M"><b>Gender  -  </b>  {data.gender}</div>
-                          <div className="M"><b>Birthdate  -  </b>  {data.birthdate}</div>
+                          <div className="M"><b>Birthdate  -  </b> {dayjs(data.birthdate).format('DD/MM/YYYY')} </div>
                           <div className="M"><b>Blood Group  -  </b>  {data.bloodgroup}</div>
                           <div className="M"><b>Marratrial Status  -  </b>  {data.marriedstatus}</div>
                           <div className="M"><b>Address  -  </b>  {data.address}</div>

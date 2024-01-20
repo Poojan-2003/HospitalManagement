@@ -7,6 +7,7 @@ import "../Pages/Patient.css"
 import axios from 'axios';
 import dayjs from "dayjs";
 import { Modal, ModalHeader } from "reactstrap";
+import Logo from "../../Assests/LL.png"
 
 
 function PatientPrescription() {
@@ -42,8 +43,11 @@ function PatientPrescription() {
 
   return (
     <div>
-    <div className="MainNavbar"> <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+    <div className="MainNavbar">
+    <div><img src={Logo} alt="Logo" className="MMM" /></div>
+
+       <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal

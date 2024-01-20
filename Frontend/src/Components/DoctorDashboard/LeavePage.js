@@ -12,6 +12,8 @@ import {message} from "antd"
 import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import logo from "../../Assests/pending-icon.png"
+import Logo from "../../Assests/LL.png"
+
 function LeavePage() {
   function Logout (){
     window.location.href='/'
@@ -87,8 +89,10 @@ function Greeting(props){
 }
   return (
     <div>
-      <div className="MainNavbar"><div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+      <div className="MainNavbar">
+      <div><img src={Logo} alt="Logo" className="MMM" /></div>
+        <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal

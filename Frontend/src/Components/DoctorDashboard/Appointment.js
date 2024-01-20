@@ -6,14 +6,16 @@ import "../Dashboard/AdminDashboard.css";
 import "../DoctorDashboard/MainDoctorDashboard.css";
 import dayjs from 'dayjs';
 import { Modal, ModalHeader } from "reactstrap";
+import Logo from "../../Assests/LL.png"
 
 function Appointment() {
   const [Appointment ,setAppointment] = useState([])
-  const doctoremail  = localStorage.getItem("Demail");
+  const doctoremail  = localStorage.getItem("Doctoremail");
   const PatientEmail  = localStorage.getItem("Patientemail")
   const DoctorPass = localStorage.getItem("DoctorPassword")
   const DoctorName= localStorage.getItem("Doctorname")
   // const email = PatientEmail.slice(1,-1)
+  const DE = doctoremail.slice(1,-1)
   const [Pmodal, setPmodal] = useState(false);
 
   const Update1 = async(id) => {
@@ -53,8 +55,10 @@ function Logout (){
 }
   return (
     <div>
-      <div className="MainNavbar"><div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+      <div className="MainNavbar">
+      <div><img src={Logo} alt="Logo" className="MMM" /></div>
+        <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal
@@ -68,7 +72,7 @@ function Logout (){
               <div>
                 <div className="AdminInfo"><b>Account Type</b> : Doctor</div>
                 <div className="AdminInfo"><b>UserName</b> :{DoctorName.slice(1,-1)}</div>
-                <div className="AdminInfo"><b>Email</b> : {doctoremail}</div>
+                <div className="AdminInfo"><b>Email</b> : {doctoremail.slice(1,-1)}</div>
                 <div className="AdminInfo"><b>Password</b> : DoctorPassword</div>
                 <button className="LogOut" onClick={()=>Logout()}>Log Out</button>
               </div>
@@ -125,7 +129,7 @@ function Logout (){
                   </tr>
                 </thead>
                 <tbody>
-                  {Appointment?.filter(Appointment => Appointment.doctoremail === doctoremail).filter(Appointment => Appointment.status === 0).map((data, i) => (
+                  {Appointment?.filter(Appointment => Appointment.doctoremail === DE).filter(Appointment => Appointment.status === 0).map((data, i) => (
                     <React.Fragment key={data._id}>
                     <tr key={i}>
                       <td>{++i}</td>

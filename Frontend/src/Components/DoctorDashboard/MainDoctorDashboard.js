@@ -6,7 +6,7 @@ import "../DoctorDashboard/MainDoctorDashboard.css";
 import { useDispatch, useSelector } from "react-redux";
 import Switch from "@mui/material/Switch";
 import axios from "axios"
-import logo from "../../Assests/Flogo.png"
+import Logo from "../../Assests/LL.png"
 function MainDoctorDashboard() {
   const [checked, setChecked] = React.useState(false);
   function Logout (){
@@ -55,9 +55,9 @@ const Doctoremail= localStorage.getItem("Doctoremail")
   return (
     <div>
       <div className="MainNavbar">
-        <div><img src={logo} alt="Logo" className="HM" /></div>
+        <div><img src={Logo} alt="Logo" className="MMM" /></div>
         <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal

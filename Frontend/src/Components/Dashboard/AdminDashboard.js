@@ -2,7 +2,8 @@ import React,{useState} from "react";
 import { Modal, ModalHeader } from "reactstrap";
 import { Dashboard } from "./Dashboard";
 import "../Dashboard/AdminDashboard.css";
-import Logo from "../../Assests/F3.png"
+// import Logo from "../../Assests/F3.png"
+ import Logo from "../../Assests/LL.png"
 
 function AdminDashboard() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -13,7 +14,7 @@ function AdminDashboard() {
    <div>
       <div className="MainNavbar"> <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
         <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal
@@ -106,15 +107,15 @@ function AdminDashboard() {
             <div className="SB2">
               <div className="Icon"><i class="fa-sharp fa-solid fa-tablets" id="MIcon"></i></div>
               <div className="RData">
-                  <div className="count">5</div>
+                  <div className="count">8</div>
                   <div className="Value">Total Medicine</div>
               </div>
             </div>
             <div className="SB2">
               <div className="Icon"><i class="fa-solid fa-user-doctor" id="MIcon2"></i></div>
               <div className="RData">
-                  <div className="count">5</div>
-                  <div className="Value">Total Doctors</div>
+                  <div className="count">2</div>
+                  <div className="Value" id="TD">Total Doctors</div>
               </div>
             </div>
 
@@ -125,15 +126,15 @@ function AdminDashboard() {
             <div className="SB2">
               <div className="Icon"><i class="fa-solid fa-person" id="MIcon3"></i></div>
               <div className="RData">
-                  <div className="count">5</div>
-                  <div className="Value">Total Employee</div>
+                  <div className="count">15</div>
+                  <div className="Value" id="TE">Total Employee</div>
               </div>
             </div>
             <div className="SB2">
               <div className="Icon"><i class="fa-solid fa-hospital-user" id="MIcon4"></i></div>
               <div className="RData">
                   <div className="count">5</div>
-                  <div className="Value">Total Patients</div>
+                  <div className="Value" id="TP">Total Patients</div>
               </div>
             </div>
 

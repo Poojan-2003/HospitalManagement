@@ -19,7 +19,7 @@ import FormLabel from '@mui/material/FormLabel';
 import "../Pages/Doctor.css"
 import { green } from "@mui/material/colors";
 import FileBase64 from 'react-file-base64';
-import Logo from "../../Assests/F3.png"
+import Logo from "../../Assests/LL.png"
 
 
 function Doctor() {
@@ -153,7 +153,7 @@ function Doctor() {
       <div className="MainNavbar">
       <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
         <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal

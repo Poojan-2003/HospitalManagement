@@ -19,7 +19,7 @@ import dayjs from "dayjs";
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Logo from "../../Assests/F3.png"
+import Logo from "../../Assests/LL.png"
 
 function Inventory() {
 
@@ -80,7 +80,7 @@ function Inventory() {
   return (
     <div>
       <div className='PMainNavbar'><div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div><div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal

@@ -7,6 +7,7 @@ import "./PatientDashboard.css"
 import image from "../../Assests/OQ6UTW0.jpg"
 import {Link} from "react-router-dom"
 import { Modal, ModalHeader } from "reactstrap";
+import Logo from "../../Assests/LL.png"
 
 function PatientDashboard() {
   // eslint-disable-next-line
@@ -37,8 +38,11 @@ const [AllDoctor,setAllDoctor] = useState([])
 }, []);
   return (
     <div>
-      <div className="MainNavbar"> <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+      <div className="MainNavbar">
+      <div><img src={Logo} alt="Logo" className="MMM" /></div>
+
+         <div className="Sliding">
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal
@@ -103,7 +107,7 @@ const [AllDoctor,setAllDoctor] = useState([])
               <div className='PRightData'>
                 <div className='Dname'><b>Name</b> : {data.name}</div>
                 <div className='Dspeciality'><b>Speciality</b> : {data.speciality}</div>
-                <div className='DFee'><b>Consultancy Fees</b> : $500/hr</div>
+                <div className='DFee'><b>Consultancy Fees</b> : ₹500/hr</div>
                 <div><Link to={`/BookAppointment`}><button className='PPBtn' onClick={()=>{localStorage.setItem("Dname",data.name); localStorage.setItem("Demail",data.email)}}>Book Now !</button></Link></div>
               </div>
             </div>

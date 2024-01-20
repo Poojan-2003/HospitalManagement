@@ -20,7 +20,7 @@ function Home() {
         <div><img className="HM1"src={HM} alt='HM' /></div>
         <div className='mid'>
           <div className='text1'>We Are Here For Your Care</div>
-          <div className='text2'>We Are Best The Doctors</div>
+          <div className='text2'>We Are The Best  Doctors</div>
           <div className='text3'>We are here for your care 24/7. Any help just call us.</div>
         </div>
     </div>

@@ -9,6 +9,7 @@ import Select from "@mui/material/Select";
 import axios from "axios";
 import {message} from "antd"
 import { Modal, ModalHeader } from "reactstrap";
+import Logo from "../../Assests/LL.png"
 
 function Prescription() {
   function Logout (){
@@ -61,8 +62,10 @@ function Prescription() {
   return (
     <div>
       <div className="MainNavbar">
+      <div><img src={Logo} alt="Logo" className="MMM" /></div>
+
       <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal

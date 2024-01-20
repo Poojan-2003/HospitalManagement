@@ -14,7 +14,7 @@ import {message} from "antd"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import Logo from "../../Assests/F3.png"
+import Logo from "../../Assests/LL.png"
 import dayjs from "dayjs";
 
 function Patient() {
@@ -131,7 +131,7 @@ function Patient() {
         
          <div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div>
         <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal
@@ -153,7 +153,7 @@ function Patient() {
             
             <i  onClick={() => {
                 setPmodal(true);
-              }} id="ProfilePic"class="fa-solid fa-circle-user"></i></div></div>
+              }} id="ProfilePic" className="fa-solid fa-circle-user"></i></div></div>
       <div className="PMainBody">
         <div className="PMainSidebar">
           <div className="PSideBarData">

@@ -8,8 +8,11 @@
     color: white;
     height: 40px;
     width: 70px;
+    margin-bottom: 20px;
+    margin-left: -50px;
 }
 .LRej{
+    width: 70px;    
     height: 40px;
     border: none;
     background-color: red;

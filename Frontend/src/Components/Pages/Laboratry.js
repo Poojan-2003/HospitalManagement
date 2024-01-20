@@ -6,7 +6,7 @@ import "./Laboratry.css"
 import { TextField } from "@mui/material";
 import dayjs from "dayjs";
 import { Modal, ModalHeader } from "reactstrap";
-import Logo from "../../Assests/F3.png"
+import Logo from "../../Assests/LL.png"
 
 function Laboratry() {
   const [Query, setQuery] = useState("");
@@ -56,7 +56,7 @@ const Update2 = async(email) => {
   return (
     <div>
       <div className="MainNavbar"><div className="TL"> <img src={Logo} alt="Logo" className="PHM"/></div> <div className="Sliding">
-        <marquee className="MCol" direction="right">Welcome To Abc Hospital</marquee></div>
+        <marquee className="MCol" direction="right">Welcome To Union Family Health Center</marquee></div>
         <div>
           
           <Modal
